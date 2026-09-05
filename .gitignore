@@ -1,0 +1,22 @@
+# Sistema operativo y editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.code-workspace
+
+# Dependencias y builds
+node_modules/
+dist/
+build/
+.cache/
+.tmp/
+
+# Variables de entorno y archivos locales
+.env
+.env.*
+!.env.example
+
+# Logs y archivos temporales
+*.log
+*.tmp
+*.swp
