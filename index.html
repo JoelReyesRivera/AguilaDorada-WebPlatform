@@ -260,8 +260,8 @@
   /* Testimonial */
   /* CTA band */
   .cta-band{background:var(--brown);color:var(--cream);}
-  .cta-grid{display:grid;grid-template-columns:1fr 1.15fr;}
-  .cta-col{padding:40px 48px;display:flex;flex-direction:column;gap:14px;}
+  .cta-grid{display:grid;grid-template-columns:1fr 1fr 1.15fr;}
+  .cta-col{padding:40px 32px;display:flex;flex-direction:column;gap:14px;}
   .cta-col .icon-row{display:flex;align-items:center;gap:12px;}
   .cta-col .icon-row .circ{width:38px;height:38px;border-radius:50%;background:rgba(250,246,239,.1);display:flex;align-items:center;justify-content:center;}
   .cta-col .icon-row .circ svg{width:18px;height:18px;}
@@ -269,6 +269,16 @@
   .cta-col p{font-size:14px;color:#D8CCC2;max-width:38ch;}
   .cta-volunteer{border-right:1px solid rgba(250,246,239,.14);}
   .cta-volunteer .icon-row .circ{background:rgba(31,58,95,.55);}
+  .cta-supplies{border-right:1px solid rgba(250,246,239,.14);}
+  .cta-supplies .icon-row .circ{background:rgba(201,160,71,.2);color:var(--gold);}
+  .cta-supplies .icon-row .circ svg{stroke:currentColor;}
+  .cta-volunteer > .btn,.cta-band > .wrap > .cta-grid > .cta-col:last-child > .btn{margin-top:auto;}
+  .supplies-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 14px;}
+  .supplies-list li{font-size:13.5px;color:#E5D8CC;}
+  .supplies-list li::before{content:'+';color:var(--gold);font-weight:700;margin-right:8px;}
+  .supplies-buttons{display:flex;flex-direction:column;gap:8px;margin-top:auto;}
+  .supplies-buttons .btn{font-size:13px;line-height:1.35;padding:10px 14px;text-align:center;}
+  .supplies-buttons small{display:block;font-size:12px;font-weight:400;opacity:.85;margin-top:2px;}
   .volunteer-list{display:flex;flex-direction:column;gap:8px;margin:2px 0 4px;padding:0;}
   .volunteer-list li{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:#E5D8CC;}
   .volunteer-list li::before{content:'+';color:var(--gold);font-weight:700;line-height:1.45;}
@@ -282,7 +292,7 @@
   .bank-details strong{color:var(--gold);font-weight:700;}
   .bank-details .clabe-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
   .bank-details .clabe{font-size:15px;letter-spacing:.4px;}
-  .copy-clabe{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(250,246,239,.35);border-radius:5px;background:transparent;color:var(--cream);padding:6px 9px;font:600 12px 'Montserrat',sans-serif;cursor:pointer;white-space:nowrap;}
+  .copy-clabe{display:inline-flex;align-items:center;gap:5px;margin-left:4px;border:1px solid rgba(250,246,239,.35);border-radius:5px;background:transparent;color:var(--cream);padding:6px 9px;font:600 12px 'Montserrat',sans-serif;cursor:pointer;white-space:nowrap;}
   .copy-clabe:hover,.copy-clabe:focus-visible{background:rgba(250,246,239,.12);}
   .copy-clabe svg{width:14px;height:14px;display:block;}
   .copy-clabe.copied{color:var(--gold);border-color:var(--gold);}
@@ -310,7 +320,7 @@
     .menu-btn{display:block;}
     .foot-grid{grid-template-columns:1fr 1fr;}
     .hero h1{font-size:38px;}
-    .cta-volunteer{border-right:none;border-bottom:1px solid rgba(250,246,239,.14);}
+    .cta-col:not(:last-child){border-right:none;border-bottom:1px solid rgba(250,246,239,.14);}
   }
   @media (max-width:640px){
     section{padding:40px 0;}
@@ -599,15 +609,34 @@
           <div class="circ"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.6"><path d="M16 20v-1a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v1M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM21 20v-1a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3>Tu tiempo también transforma</h3>
         </div>
-        <p>Únete como voluntario y ayuda a crear espacios de escucha, aprendizaje y acompañamiento para nuestra comunidad.</p>
+        <p>Únete como voluntario y ayuda a crear espacios de escucha, aprendizaje y acompañamiento.</p>
         <ul class="volunteer-list">
           <li>Acompañar reuniones y actividades comunitarias.</li>
           <li>Apoyar talleres, eventos y acciones de difusión.</li>
           <li>Compartir tus habilidades y experiencia.</li>
         </ul>
         <p class="volunteer-reassurance"><strong>No necesitas experiencia previa.</strong> Te orientamos para encontrar la forma de participar que mejor se adapte a ti.</p>
-        <p class="volunteer-note">Tu tiempo puede convertirse en escucha, apoyo y esperanza para alguien más.</p>
         <a href="https://wa.me/526672115886?text=Hola%2C%20me%20gustar%C3%ADa%20conocer%20las%20opciones%20para%20sumarme%20como%20voluntario%20en%20%C3%81guila%20Dorada." class="btn btn-navy" target="_blank" rel="noopener noreferrer" style="align-self:flex-start;">Quiero conocer cómo sumarme</a>
+      </div>
+      <div class="cta-col cta-supplies">
+        <div class="icon-row">
+          <div class="circ" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 7h16M5 7v12h14V7M8 7V4h8v3M9 11v4M12 11v4M15 11v4"/></svg></div>
+          <h3>Comparte lo que tienes</h3>
+        </div>
+        <p>También puedes apoyar donando víveres para familias en situación de vulnerabilidad.</p>
+        <ul class="supplies-list">
+          <li>Sopa</li>
+          <li>Frijol</li>
+          <li>Aceite</li>
+          <li>Sal</li>
+          <li>Café</li>
+          <li>Atún</li>
+        </ul>
+        <p class="volunteer-reassurance"><strong>Requisitos: </strong> Productos cerrados, en buen estado, con 6+ meses de caducidad (evita vidrio).</p>
+        <div class="supplies-buttons">
+          <a href="https://maps.app.goo.gl/Wsu3UBYT477xSN2z8" class="btn btn-gold" target="_blank" rel="noopener noreferrer">Nuestras instalaciones / oficinas</a>
+          <a href="https://maps.app.goo.gl/fyBp84u1WZCsaZHo7" class="btn btn-gold" target="_blank" rel="noopener noreferrer"><span>La Casa del Maquío</span><small>Solo en días de reuniones</small></a>
+        </div>
       </div>
       <div class="cta-col">
         <div class="icon-row">
@@ -615,14 +644,11 @@
           <h3>¿Quieres ayudar?</h3>
         </div>
         <p>Tu donativo amplía el acceso a apoyo psicológico y espacios comunitarios. Puedes apoyar con una transferencia:</p>
-        <div class="bank-details" id="datos-donativo">
-          <div class="bank-heading"><span class="bank-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m3 9 9-5 9 5M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/></svg></span>Datos para transferencia</div>
-          <span><strong>Banco:</strong> NU</span>
-          <span><strong>Titular:</strong> Joel Reyes Rivera</span>
-          <span class="clabe-row"><span class="clabe"><strong>CLABE:</strong> <span id="clabeValue">638180000135393123</span></span><button class="copy-clabe" id="copyClabe" type="button" aria-label="Copiar CLABE"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="1.5"/><path d="M5 16H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1"/></svg><span aria-live="polite">Copiar</span></button></span>
-          <span><strong>Concepto:</strong> Donativo y tu nombre (opcional)</span>
-        </div>
-        <p class="donation-note">Comparte tu comprobante; nos encantará agradecerte personalmente.</p>
+        <div class="bank-heading"><span class="bank-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m3 9 9-5 9 5M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/></svg></span>Datos para transferencia</div>
+        <span><strong>Banco:</strong> NU</span>
+        <span><strong>Titular:</strong> Joel Reyes Rivera</span>
+        <span class="clabe-row"><span class="clabe"><strong>CLABE:</strong> <span id="clabeValue">638180000135393123</span></span><button class="copy-clabe" id="copyClabe" type="button" aria-label="Copiar CLABE"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="1.5"/><path d="M5 16H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1"/></svg><span aria-live="polite">Copiar</span></button></span>
+        <span><strong>Concepto:</strong> Donativo y tu nombre (opcional)</span>
         <a href="https://wa.me/526672115886?text=Hola%2C%20comparto%20mi%20comprobante%20de%20donativo%20para%20%C3%81guila%20Dorada." class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="align-self:flex-start;">Comparte tu donativo con nosotros</a>
       </div>
     </div>
