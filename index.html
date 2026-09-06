@@ -23,11 +23,18 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "NGO",
+  "@type": ["NGO", "MedicalBusiness"],
   "name": "Águila Dorada A.C.",
   "url": "https://aguiladorada.org",
   "logo": "https://aguiladorada.org/assets/images/logo.png",
-  "description": "Comunidad Águila Dorada A.C. ofrece terapia psicológica accesible y apoyo emocional en Culiacán.",
+  "description": "Atención en salud mental, psicólogos y terapia psicológica accesible en Culiacán.",
+  "medicalSpecialty": "Psychiatric",
+  "knowsAbout": [
+    "Salud mental",
+    "Psicología",
+    "Terapia individual",
+    "Apoyo emocional"
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Matías Lazcano 2134, int. 11, Tierra Blanca",
@@ -35,7 +42,13 @@
     "addressLocality": "Culiacán",
     "addressRegion": "Sinaloa",
     "addressCountry": "MX"
-  }
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 24.8188,
+    "longitude": -107.3948
+  },
+  "areaServed": "Culiacán"
 }
 </script>
 <style>
