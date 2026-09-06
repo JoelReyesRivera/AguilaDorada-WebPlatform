@@ -1,0 +1,14 @@
+name: IndexNow Ping
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ping-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send IndexNow Ping
+        run: |
+          curl -s "https://api.indexnow.org/indexnow?url=https://aguiladorada.org/&key=cf3968cf08a949beb976d7c0f429976f"
