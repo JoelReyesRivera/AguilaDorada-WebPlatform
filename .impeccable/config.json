@@ -1,0 +1,68 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-09-08T21:21:09.246Z",
+        "reason": "Brand typography confirmed intentional during /impeccable document (DESIGN.md 'El Santuario Cálido'); predates this session, not something introduced by it."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-08T21:21:19.381Z",
+        "reason": "Warm cream background confirmed intentional brand identity (El Santuario Cálido) during /impeccable document interview; predates this session."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "styles.css"
+        ],
+        "createdAt": "2026-09-08T21:21:19.413Z",
+        "reason": "Warm cream background confirmed intentional brand identity (El Santuario Cálido) during /impeccable document interview; predates this session."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-08T21:21:19.443Z",
+        "reason": "Verified false positive: .info-row and .cta-band content already receives horizontal padding from ancestor containers (.info-card 30px; .wrap/.cta-col 32-40px); not actually flush against page edge."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "styles.css"
+        ],
+        "createdAt": "2026-09-08T21:21:19.472Z",
+        "reason": "Verified false positive: .info-row and .cta-band content already receives horizontal padding from ancestor containers (.info-card 30px; .wrap/.cta-col 32-40px); not actually flush against page edge."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pages/nosotros.html"
+        ],
+        "createdAt": "2026-09-08T22:14:16.500Z",
+        "reason": "Brand identity (El Santuario Cálido) confirmed intentional during /impeccable document; same warm cream ground already sanctioned for index.html and styles.css. New team page inherits the established world."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pages/nosotros.preview.html"
+        ],
+        "createdAt": "2026-09-08T22:21:49.366Z",
+        "reason": "Brand identity (El Santuario Cálido) confirmed intentional during /impeccable document; already sanctioned for index.html, styles.css and pages/nosotros.html. This is the preview/simulation twin of that page."
+      }
+    ]
+  }
+}

@@ -35,21 +35,23 @@ La pagina incluye:
 
 ```text
 .
-├── aguila-dorada.html  # Landing page actual
+├── index.html          # Landing page actual
+├── styles.css          # Estilos de la landing (enlazados desde index.html)
+├── pages/              # Fragmentos HTML en construccion, aun no enlazados
 ├── assets/
 │   ├── icons/          # Iconos y recursos graficos futuros
-│   └── images/         # Imagenes externas futuras
+│   └── images/         # Imagenes de la landing
 ├── docs/               # Documentacion del proyecto
 ├── .github/            # Automatizaciones y configuracion de GitHub
 ├── .gitignore
 └── README.md
 ```
 
-Las imagenes actuales de la landing estan embebidas en el HTML base. La carpeta `assets/` queda preparada para migrarlas posteriormente a archivos independientes.
+Las imagenes de la landing viven en `assets/images/` y se referencian directamente desde `index.html`.
 
 ## Ejecucion local
 
-Al ser una pagina estatica, puede abrirse directamente en el navegador haciendo doble clic en `aguila-dorada.html`.
+Al ser una pagina estatica, puede abrirse directamente en el navegador haciendo doble clic en `index.html`.
 
 Para servirla localmente con Python:
 
@@ -57,7 +59,7 @@ Para servirla localmente con Python:
 python -m http.server 8000
 ```
 
-Despues visita `http://localhost:8000/aguila-dorada.html`.
+Despues visita `http://localhost:8000/index.html`.
 
 ## Estado del proyecto
 
