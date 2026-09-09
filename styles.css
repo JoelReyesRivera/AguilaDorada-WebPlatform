@@ -1628,7 +1628,7 @@ footer {
    Página Nosotros / Equipo  (pages/nosotros.html)
    =================================================================== */
 .page-head {
-  padding: 64px 0 4px;
+  padding: 56px 0 40px;
 }
 
 .page-head .kicker {
@@ -1652,14 +1652,10 @@ footer {
 }
 
 .team-section {
-  padding: 44px 0 56px;
+  padding: 40px 0 56px;
 }
 
 .team-group-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
   margin-bottom: 28px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
@@ -1669,20 +1665,35 @@ footer {
   font-size: 30px;
 }
 
-.team-group-head .count {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+.team-intro {
+  margin: -12px 0 26px;
+  max-width: 60ch;
   color: var(--brown-soft);
-  white-space: nowrap;
+  font-size: 14.5px;
 }
 
+/* Un solo CTA para todo el equipo de psicología, centrado bajo las tarjetas */
+.team-booking {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Columnas fijas por breakpoint: 4 -> 2 -> 1, saltando el 3.
+   Con 7 tarjetas, 3 columnas daría 3+3+1 y 4 psicólogas darían 3+1;
+   en ambos casos queda una tarjeta suelta. Con 4 y 2 eso no pasa
+   (salvo la última de fundadores a 2 columnas, que es inevitable con 7).
+   El ancho máximo evita que la tarjeta se estire en una sola columna. */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 22px;
+}
+
+.team-grid>.tm-card {
+  flex: 0 1 calc(25% - 16.5px);
+  max-width: 300px;
 }
 
 .tm-card {
@@ -1704,9 +1715,9 @@ footer {
 
 .tm-avatar {
   position: relative;
-  width: 112px;
-  height: 112px;
-  margin: 2px auto 4px;
+  width: 148px;
+  height: 148px;
+  margin: 2px auto 6px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1720,24 +1731,29 @@ footer {
 .tm-monogram {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 46px;
   color: var(--brown);
   letter-spacing: .5px;
 }
 
+/* Las fotos del equipo se sirven ya recortadas a cuadrado, así que
+   object-fit no recorta nada y no hace falta ajustar la posición. */
 .tm-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 22%;
 }
 
+/* Altura de 2 líneas reservada: los nombres de 1 y de 2 líneas ocupan
+   lo mismo, para que todo lo que va debajo arranque a la misma altura
+   entre tarjetas vecinas. */
 .tm-name {
   font-size: 21px;
   line-height: 1.2;
   text-align: center;
+  min-height: 2.4em;
 }
 
 .tm-role,
@@ -1762,33 +1778,45 @@ footer {
   margin-top: -3px;
 }
 
+/* El aporte es el dato primario: texto principal, más grande que
+   "En lo personal". Crece para ocupar el hueco sobrante de la tarjeta,
+   de modo que la regla divisoria de "En lo personal" queda a la misma
+   altura en todas las tarjetas de una fila. */
 .tm-aporte {
-  font-size: 14px;
-  color: var(--brown-soft);
-  max-width: 42ch;
+  font-size: 15px;
+  color: var(--brown);
+  flex-grow: 1;
 }
 
 .tm-aporte .tm-todo {
-  color: var(--terracotta-deep);
+  color: #A85436;
   font-weight: 700;
 }
 
+/* Dato secundario: itálica serif, más pequeño que el aporte.
+   La regla divisoria ocupa el ancho completo de la tarjeta; el texto
+   se acota con un span interno. */
 .tm-personal {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 15px;
-  line-height: 1.4;
-  color: var(--brown-soft);
-  max-width: 42ch;
-  margin-top: auto;
   padding-top: 13px;
   border-top: 1px solid var(--line);
 }
 
-.tm-personal + .tm-cta {
-  margin-top: 2px;
+/* Reserva 2 líneas para el texto: la regla divisoria queda alineada
+   entre tarjetas vecinas aunque el texto sea de 1 o 2 líneas.
+   (En una sola columna no hay vecinas y se anula más abajo.) */
+.tm-personal>span {
+  display: block;
+  max-width: 42ch;
+  min-height: 2.8em;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--brown-soft);
 }
 
+/* Etiqueta secundaria: en marrón suave, no en verde, para no competir
+   con el puesto (.tm-role) ni con el aporte. */
 .tm-personal b {
   display: block;
   font-family: 'Montserrat', sans-serif;
@@ -1797,31 +1825,9 @@ footer {
   font-size: 11px;
   letter-spacing: .6px;
   text-transform: uppercase;
-  color: var(--green-deep);
+  color: var(--brown-soft);
+  opacity: .8;
   margin-bottom: 3px;
-}
-
-.tm-cta {
-  margin-top: 4px;
-  align-self: flex-start;
-  font-size: 13px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--navy);
-  border-bottom: 1.5px solid currentColor;
-  padding-bottom: 2px;
-}
-
-.tm-cta:hover,
-.tm-cta:focus-visible {
-  color: var(--navy-deep);
-}
-
-.tm-cta svg {
-  width: 14px;
-  height: 14px;
 }
 
 /* Equipo de psicología: avatar en tinte navy (vínculo con Terapia / Diagnóstico) */
@@ -1899,22 +1905,46 @@ footer {
   }
 }
 
+@media (max-width: 1039px) {
+  .team-grid>.tm-card {
+    flex-basis: calc(50% - 11px);
+    max-width: 360px;
+  }
+}
+
 @media (max-width: 640px) {
   .page-head {
-    padding-top: 44px;
+    padding-top: 40px;
   }
 
   .page-head h1 {
     font-size: 34px;
   }
 
-  .team-grid {
-    grid-template-columns: 1fr;
+  .team-grid>.tm-card {
+    flex-basis: 100%;
+    max-width: 400px;
   }
 
-  .team-group-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+  /* A una columna no hay tarjetas vecinas que alinear: el bloque
+     "En lo personal" fluye sin reservar líneas de más. */
+  .tm-personal>span {
+    min-height: 0;
   }
+}
+
+/* Enlace de la sección Misión hacia la página del equipo */
+.mission-link {
+  display: inline-block;
+  margin-top: 26px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--navy);
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.mission-link:hover,
+.mission-link:focus-visible {
+  color: var(--navy-deep);
 }

@@ -11,11 +11,16 @@
   <link rel="stylesheet" href="../styles.css">
   <meta name="description"
     content="Conoce al equipo de Águila Dorada A.C.: las personas fundadoras y el equipo de psicología que sostienen la atención en salud mental accesible en Culiacán.">
+  <meta name="theme-color" content="#FAF6EF">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aguiladorada.org/nosotros">
   <meta property="og:title" content="Nosotros — Águila Dorada A.C.">
   <meta property="og:description"
     content="Las personas detrás de Águila Dorada A.C.: fundadores y equipo de psicología.">
+  <meta property="og:image" content="https://aguiladorada.org/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style"
@@ -33,27 +38,23 @@
        EQUIPO (7): nombres y puestos ya son los reales. El texto de
        <p class="tm-aporte"> es un BORRADOR editable. Falta:
 
-       1. FOTOS: guarda las 7 imágenes en  assets/images/equipo/  con
-          EXACTAMENTE estos nombres (cuadradas o verticales, 400px+):
-            maricela-cazarez.jpg   -> Lic. Maricela Cazarez Zamora (Directora)
-            alma-niebla.jpg        -> Ing. Alma Esther Niebla Encines (Contralor)
+       1. FOTOS: ya están las 7, recortadas a cuadrado 400x400 y optimizadas
+          (72 KB en total). Para reemplazar una, guárdala
+          CUADRADA (400x400, JPEG) con el mismo nombre de archivo:
+            maricela-cazarez.jpg   -> Lic. Maricela Cázarez Zamora
+            alma-niebla.jpg        -> Ing. Alma Esther Niebla Encines
             joel-reyes.jpg         -> Ing. Joel Reyes Rivera
-            briceida-mojardin.jpg  -> MDN. Briceida Janeth Mojardín Bolado
+            briceida-mojardin.jpg  -> M.D.N. Briceida Janeth Mojardín Bolado
             dayan-arredondo.jpg    -> Lic. Dayán Michell Arredondo Félix
             hector-mares.jpg       -> Héctor Javier Mares Díaz
             gloria-moreno.jpg      -> Lic. Gloria Amelia Moreno Cortéz
-          Mientras el archivo no exista se muestra el monograma; al subirlo
-          aparece la foto sola (el <img> se autoelimina con onerror si falta).
-          Ajusta  style="object-position:center NN%"  si la cara queda alta/baja.
-       2. EN LO PERSONAL: sustituye el texto tras "Pendiente:" en
-          <p class="tm-personal"> por un gusto/pasatiempo real (una frase).
-       3. APORTE: ajusta el borrador de <p class="tm-aporte"> si hace falta.
-       4. PSICOLOGÍA: Maricela y Dayán ya están abajo con su foto; falta su
-          cédula, su "aporte" (enfoque en terapia) y "En lo personal".
-          Psicóloga 3 y 4 siguen como marcador: sustituye nombre, cédula,
-          foto (mismo método que el equipo) y textos, o borra las tarjetas
-          que sobren.
-       Ejemplo ya redactado de "aporte" y "En lo personal": pages/nosotros.preview.html
+          Si el archivo falta, el <img> se autoelimina (onerror) y queda
+          el monograma de iniciales.
+       2. APORTE del equipo (7): es un borrador editable; ajústalo si
+          hace falta. "Gustos personales" ya está completo (solo en Fundadores).
+       3. PSICOLOGÍA: Maricela tiene cédula (8820269) y encabeza la atención.
+          Dayán y las Psicólogas 3-4 figuran como pasantes en práctica
+          supervisada. Falta el nombre real de las Psicólogas 3 y 4.
        ================================================================= -->
 </head>
 
@@ -134,99 +135,93 @@
           <article class="tm-card" data-reveal>
             <div class="tm-avatar">
               <span class="tm-monogram" aria-hidden="true">MC</span>
-              <img class="tm-photo" src="../assets/images/equipo/maricela-cazarez.jpg" alt="Retrato de Lic. Maricela Cazarez Zamora"
-                width="152" height="152" loading="lazy" style="object-position:center 30%"
+              <img class="tm-photo" src="../assets/images/equipo/maricela-cazarez.jpg" alt="Retrato de Lic. Maricela Cázarez Zamora"
+                width="400" height="400" loading="lazy"
                 onerror="this.remove()">
             </div>
-            <h3 class="tm-name">Lic. Maricela Cazarez Zamora</h3>
-            <p class="tm-role">Directora</p>
-            <p class="tm-aporte">Encabeza la dirección de la asociación: marca el rumbo, representa a Águila Dorada ante instituciones y cuida que cada área trabaje alineada con la misión.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto, pasatiempo o algo que la comunidad no sabría de ella.</p>
+            <h3 class="tm-name">Lic. Maricela Cázarez Zamora</h3>
+            <p class="tm-role">Dirección y Depto. Educativo</p>
+            <p class="tm-aporte">Marca el rumbo de la asociación y la representa ante instituciones.</p>
+            <p class="tm-personal"><b>Gustos personales</b><span>La lectura, los viajes y el tiempo con los suyos.</span></p>
           </article>
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar">
               <span class="tm-monogram" aria-hidden="true">AN</span>
               <img class="tm-photo" src="../assets/images/equipo/alma-niebla.jpg" alt="Retrato de Ing. Alma Esther Niebla Encines"
-                width="152" height="152" loading="lazy" style="object-position:50% 26%"
+                width="400" height="400" loading="lazy"
                 onerror="this.remove()">
             </div>
             <h3 class="tm-name">Ing. Alma Esther Niebla Encines</h3>
-            <p class="tm-role">Contralor</p>
-            <p class="tm-aporte">Vigila el uso correcto y transparente de los recursos, revisa los procesos internos y respalda la rendición de cuentas de la A.C.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto, pasatiempo o algo que la comunidad no sabría de ella.</p>
+            <p class="tm-role">Contraloría</p>
+            <p class="tm-aporte">Vigila el uso transparente de los recursos y la rendición de cuentas.</p>
+            <p class="tm-personal"><b>Gustos personales</b><span>El café con buena charla, la música y los lugares nuevos.</span></p>
           </article>
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar">
               <span class="tm-monogram" aria-hidden="true">JR</span>
               <img class="tm-photo" src="../assets/images/equipo/joel-reyes.jpg" alt="Retrato de Ing. Joel Reyes Rivera"
-                width="152" height="152" loading="lazy" style="object-position:center 28%"
+                width="400" height="400" loading="lazy"
                 onerror="this.remove()">
             </div>
             <h3 class="tm-name">Ing. Joel Reyes Rivera</h3>
             <p class="tm-role">Administración y Voluntariado</p>
-            <p class="tm-aporte">Lleva la administración del día a día y coordina al voluntariado: acompaña a quienes se suman, los orienta y les ayuda a encontrar su lugar en el equipo.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto, pasatiempo o algo que la comunidad no sabría de él.</p>
+            <p class="tm-aporte">Lleva la administración diaria y acompaña a quienes se suman como voluntarios.</p>
+            <p class="tm-personal"><b>Gustos personales</b><span>El anime, la comida japonesa y el deporte.</span></p>
           </article>
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar">
               <span class="tm-monogram" aria-hidden="true">BM</span>
-              <img class="tm-photo" src="../assets/images/equipo/briceida-mojardin.jpg" alt="Retrato de MDN. Briceida Janeth Mojardín Bolado"
-                width="152" height="152" loading="lazy" style="object-position:center 32%"
+              <img class="tm-photo" src="../assets/images/equipo/briceida-mojardin.jpg" alt="Retrato de M.D.N. Briceida Janeth Mojardín Bolado"
+                width="400" height="400" loading="lazy"
                 onerror="this.remove()">
             </div>
-            <h3 class="tm-name">MDN. Briceida Janeth Mojardín Bolado</h3>
+            <h3 class="tm-name">M.D.N. Briceida Janeth Mojardín Bolado</h3>
             <p class="tm-role">Secretaría y Difusión</p>
-            <p class="tm-aporte">Es el primer contacto de quien se acerca y lleva la difusión: agenda, responde mensajes y cuenta en redes lo que hace la asociación.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto, pasatiempo o algo que la comunidad no sabría de ella.</p>
+            <p class="tm-aporte">Primer contacto de quien se acerca. Lleva la agenda y la difusión en redes.</p>
+            <p class="tm-personal"><b>Gustos personales</b><span>Los días de playa, los viajes y salir a bailar.</span></p>
           </article>
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar">
               <span class="tm-monogram" aria-hidden="true">DA</span>
               <img class="tm-photo" src="../assets/images/equipo/dayan-arredondo.jpg" alt="Retrato de Lic. Dayán Michell Arredondo Félix"
-                width="152" height="152" loading="lazy" style="object-position:center 28%"
+                width="400" height="400" loading="lazy"
                 onerror="this.remove()">
             </div>
             <h3 class="tm-name">Lic. Dayán Michell Arredondo Félix</h3>
-            <p class="tm-role">Encargada del Departamento Cultural y de Psicología</p>
-            <p class="tm-aporte">Coordina el departamento cultural y de psicología: enlaza al equipo terapéutico con los talleres y eventos para que cada actividad aporte al bienestar.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto, pasatiempo o algo que la comunidad no sabría de ella.</p>
+            <p class="tm-role">Depto. Cultural y de Psicología</p>
+            <p class="tm-aporte">Enlaza al equipo terapéutico con los talleres y eventos culturales.</p>
+            <p class="tm-personal"><b>Gustos personales</b><span>Estar en la naturaleza, la música y el cine.</span></p>
           </article>
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar">
               <span class="tm-monogram" aria-hidden="true">HM</span>
               <img class="tm-photo" src="../assets/images/equipo/hector-mares.jpg" alt="Retrato de Héctor Javier Mares Díaz"
-                width="152" height="152" loading="lazy" style="object-position:center 26%"
+                width="400" height="400" loading="lazy"
                 onerror="this.remove()">
             </div>
             <h3 class="tm-name">Héctor Javier Mares Díaz</h3>
-            <p class="tm-role">Encargado del Departamento Asistencial</p>
-            <p class="tm-aporte">Coordina las jornadas de apoyo a familias en situación vulnerable, desde la recolección de víveres hasta la entrega.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto, pasatiempo o algo que la comunidad no sabría de él.</p>
+            <p class="tm-role">Depto. Asistencial</p>
+            <p class="tm-aporte">Coordina las jornadas de apoyo a familias, de la recolección a la entrega.</p>
+            <p class="tm-personal"><b>Gustos personales</b><span>El cine, los días de playa y andar en moto.</span></p>
           </article>
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar">
               <span class="tm-monogram" aria-hidden="true">GM</span>
               <img class="tm-photo" src="../assets/images/equipo/gloria-moreno.jpg" alt="Retrato de Lic. Gloria Amelia Moreno Cortéz"
-                width="152" height="152" loading="lazy" style="object-position:50% 24%"
+                width="400" height="400" loading="lazy"
                 onerror="this.remove()">
             </div>
             <h3 class="tm-name">Lic. Gloria Amelia Moreno Cortéz</h3>
-            <p class="tm-role">Encargada del Departamento Asistencial</p>
-            <p class="tm-aporte">Organiza a las familias beneficiarias y da seguimiento a cada caso para que la ayuda llegue a tiempo y con dignidad.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto, pasatiempo o algo que la comunidad no sabría de ella.</p>
+            <p class="tm-role">Depto. Asistencial</p>
+            <p class="tm-aporte">Organiza a las familias beneficiarias y da seguimiento a cada caso.</p>
+            <p class="tm-personal"><b>Gustos personales</b><span>Una buena comida, la música y los viajes.</span></p>
           </article>
-
-        
-
-        
-
-        
 
         </div>
       </div>
@@ -237,58 +232,56 @@
         <div class="team-group-head">
           <h2>Equipo de psicología</h2>
         </div>
+        <p class="team-intro">La Lic. Maricela Cázarez, psicóloga con cédula profesional, encabeza la atención
+          psicológica; el resto del equipo brinda orientación psicológica en calidad de pasantes, con
+          supervisión profesional.</p>
         <div class="team-grid team-psicologas">
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar">
               <span class="tm-monogram" aria-hidden="true">MC</span>
-              <img class="tm-photo" src="../assets/images/equipo/maricela-cazarez.jpg" alt="Retrato de Lic. Maricela Cazarez Zamora"
-                width="152" height="152" loading="lazy" style="object-position:center 30%" onerror="this.remove()">
+              <img class="tm-photo" src="../assets/images/equipo/maricela-cazarez.jpg" alt="Retrato de Lic. Maricela Cázarez Zamora"
+                width="400" height="400" loading="lazy" onerror="this.remove()">
             </div>
-            <h3 class="tm-name">Lic. Maricela Cazarez Zamora</h3>
+            <h3 class="tm-name">Lic. Maricela Cázarez Zamora</h3>
             <p class="tm-role">Psicología clínica</p>
-            <p class="tm-cred">Cédula profesional por confirmar</p>
-            <p class="tm-aporte"><span class="tm-todo">Pendiente:</span> área de acompañamiento y enfoque de trabajo en terapia.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto o pasatiempo.</p>
-            <a data-wa href="https://wa.me/526672115886?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20de%20terapia%20con%20%C3%81guila%20Dorada." class="tm-cta" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .9.9-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.7-.7.9-.3.2-.5.1a6.3 6.3 0 0 1-3-2.6c-.2-.4.2-.4.5-.7.2-.2.2-.4 0-.6l-.7-1.7c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3s1 2.6 1.1 2.8c.1.2 1.8 2.8 4.5 3.8 2.2.8 2.2.5 2.6.5.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.3-.2-.5-.3Z" /></svg>Agendar sesión</a>
+            <p class="tm-cred">Cédula profesional 8820269</p>
+            <p class="tm-aporte">Atiende terapia individual y encabeza la atención psicológica, supervisando al equipo de orientación.</p>
           </article>
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar">
               <span class="tm-monogram" aria-hidden="true">DA</span>
               <img class="tm-photo" src="../assets/images/equipo/dayan-arredondo.jpg" alt="Retrato de Lic. Dayán Michell Arredondo Félix"
-                width="152" height="152" loading="lazy" style="object-position:center 28%" onerror="this.remove()">
+                width="400" height="400" loading="lazy" onerror="this.remove()">
             </div>
             <h3 class="tm-name">Lic. Dayán Michell Arredondo Félix</h3>
-            <p class="tm-role">Psicología clínica</p>
-            <p class="tm-cred">Cédula profesional por confirmar</p>
-            <p class="tm-aporte"><span class="tm-todo">Pendiente:</span> área de acompañamiento y enfoque de trabajo en terapia.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto o pasatiempo.</p>
-            <a data-wa href="https://wa.me/526672115886?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20de%20terapia%20con%20%C3%81guila%20Dorada." class="tm-cta" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .9.9-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.7-.7.9-.3.2-.5.1a6.3 6.3 0 0 1-3-2.6c-.2-.4.2-.4.5-.7.2-.2.2-.4 0-.6l-.7-1.7c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3s1 2.6 1.1 2.8c.1.2 1.8 2.8 4.5 3.8 2.2.8 2.2.5 2.6.5.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.3-.2-.5-.3Z" /></svg>Agendar sesión</a>
+            <p class="tm-role">Orientación psicológica</p>
+            <p class="tm-cred">Pasante en práctica supervisada</p>
+            <p class="tm-aporte">Acompaña procesos de orientación psicológica bajo supervisión profesional.</p>
           </article>
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar" aria-hidden="true"><span class="tm-monogram">P3</span></div>
             <h3 class="tm-name">Psicóloga 3</h3>
-            <p class="tm-role">Psicología clínica</p>
-            <p class="tm-cred">Cédula profesional por confirmar</p>
-            <p class="tm-aporte"><span class="tm-todo">Pendiente:</span> área de acompañamiento y enfoque de trabajo de esta psicóloga.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto o pasatiempo de esta psicóloga.</p>
-            <a data-wa href="https://wa.me/526672115886?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20de%20terapia%20con%20%C3%81guila%20Dorada." class="tm-cta" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .9.9-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.7-.7.9-.3.2-.5.1a6.3 6.3 0 0 1-3-2.6c-.2-.4.2-.4.5-.7.2-.2.2-.4 0-.6l-.7-1.7c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3s1 2.6 1.1 2.8c.1.2 1.8 2.8 4.5 3.8 2.2.8 2.2.5 2.6.5.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.3-.2-.5-.3Z" /></svg>Agendar sesión</a>
+            <p class="tm-role">Orientación psicológica</p>
+            <p class="tm-cred">Pasante en práctica supervisada</p>
+            <p class="tm-aporte">Acompaña procesos de orientación psicológica bajo supervisión profesional.</p>
           </article>
 
           <article class="tm-card" data-reveal>
             <div class="tm-avatar" aria-hidden="true"><span class="tm-monogram">P4</span></div>
             <h3 class="tm-name">Psicóloga 4</h3>
-            <p class="tm-role">Psicología clínica</p>
-            <p class="tm-cred">Cédula profesional por confirmar</p>
-            <p class="tm-aporte"><span class="tm-todo">Pendiente:</span> área de acompañamiento y enfoque de trabajo de esta psicóloga.</p>
-            <p class="tm-personal"><b>En lo personal</b><span class="tm-todo">Pendiente:</span> un gusto o pasatiempo de esta psicóloga.</p>
-            <a data-wa href="https://wa.me/526672115886?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20de%20terapia%20con%20%C3%81guila%20Dorada." class="tm-cta" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .9.9-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.7-.7.9-.3.2-.5.1a6.3 6.3 0 0 1-3-2.6c-.2-.4.2-.4.5-.7.2-.2.2-.4 0-.6l-.7-1.7c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3s1 2.6 1.1 2.8c.1.2 1.8 2.8 4.5 3.8 2.2.8 2.2.5 2.6.5.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.3-.2-.5-.3Z" /></svg>Agendar sesión</a>
+            <p class="tm-role">Orientación psicológica</p>
+            <p class="tm-cred">Pasante en práctica supervisada</p>
+            <p class="tm-aporte">Acompaña procesos de orientación psicológica bajo supervisión profesional.</p>
           </article>
 
-        
+        </div>
 
+        <div class="team-booking">
+          <a data-wa href="https://wa.me/526672115886?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20de%20terapia%20con%20%C3%81guila%20Dorada." class="btn btn-navy" target="_blank"
+            rel="noopener noreferrer">Quiero agendar mi terapia</a>
         </div>
       </div>
     </section>
@@ -302,7 +295,7 @@
           <a data-wa
             href="https://wa.me/526672115886?text=Hola%2C%20me%20gustar%C3%ADa%20conocer%20las%20opciones%20para%20sumarme%20como%20voluntario%20en%20%C3%81guila%20Dorada."
             class="btn btn-gold" target="_blank" rel="noopener noreferrer">Quiero sumarme como voluntario</a>
-          <a href="../index.html" class="btn btn-ghost-light">Volver al inicio</a>
+          <a href="../index.html#servicios" class="btn btn-ghost-light">Conoce nuestros servicios</a>
         </div>
       </div>
     </section>
@@ -341,7 +334,7 @@
           <h3>Enlaces rápidos</h3>
           <ul>
             <li><a href="../index.html#main-content">Inicio</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="nosotros.html" aria-current="page">Nosotros</a></li>
             <li><a href="../index.html#servicios">Servicios</a></li>
             <li><a href="../index.html#eventos">Eventos</a></li>
           </ul>
