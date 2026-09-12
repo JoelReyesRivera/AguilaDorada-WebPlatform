@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /pages/nosotros.preview.html
 
 Sitemap: https://aguiladorada.org/sitemap.xml

@@ -22,7 +22,7 @@ OWN-WORLD: Fondo cálido de base (crema / crema-alt por bloque), tarjetas en pap
 
 STORY: El visitante entiende que Águila Dorada es un equipo real y multidisciplinario; cree que hay respaldo profesional (psicólogas con cédula) y compromiso comunitario (fundadores); y sigue hacia agendar o sumarse.
 
-FIRST VIEWPORT: Encabezado de página a ancho de columna: kicker verde "Quiénes están detrás", H1 Cormorant ~46px en dos líneas, párrafo de intro (≤60ch). Debajo empieza el bloque "Fundadores" con su barra de título (nombre + conteo) y las primeras filas de la rejilla `auto-fill minmax(250px,1fr)`. Sin hero de imagen; la tipografía carga la entrada. Acciones primarias (agendar / voluntariado) viven en el cierre y en el header heredado.
+FIRST VIEWPORT: Encabezado a dos columnas (patrón compartido `.ph-grid` con `pages/eventos-pasados.html`, sin kicker — era eco literal del H1): izquierda H1 Cormorant ~46px + un párrafo de una frase (≤44ch); derecha, separada por filete, la "ficha" de la A.C. (`.ph-aside`) con los tres valores en lista de guiones (Empatía / Amor / Humanismo), "Asociación civil formalmente constituida · Culiacán, Sinaloa" y vínculo "Nuestra misión →". Entrada: un solo `ph-rise` (fade + translateY) escalonado en las dos columnas, respeta reduce-motion. Debajo empieza "Fundadores". Sin hero de imagen; la tipografía y la ficha cargan la entrada. Acciones primarias (agendar / voluntariado) viven en el cierre y en el header heredado.
 
 FORM: Directorio editorial en dos grupos (Fundadores 7 / Equipo de psicología 4), rejilla fluida de tarjetas-retrato, cierre en banda café con dos CTAs. Extensión de superficie dentro del mundo establecido — sin torneo de concepto. Seed key: n/a (code-led, extensión).
 
