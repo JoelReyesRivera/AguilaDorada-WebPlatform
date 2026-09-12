@@ -2173,6 +2173,23 @@ footer {
    sobrepuesto (serif, como el resto del sitio). La publicación de Instagram se
    inserta recortada SOLO a la foto — sin encabezado ni barra de me gusta — para
    que no parezca un "embed" pegado, sino una tarjeta propia del sitio. */
+.ig-group + .ig-group {
+  margin-top: 48px;
+}
+
+.ig-group-title {
+  font-size: 22px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+@media (min-width: 720px) {
+  .ig-group-title {
+    font-size: 25px;
+    text-align: left;
+  }
+}
+
 .ig-grid {
   display: grid;
   grid-template-columns: 1fr;
