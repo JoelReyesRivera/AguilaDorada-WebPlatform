@@ -2468,6 +2468,12 @@ footer {
   color: var(--navy-deep);
 }
 
+.cm-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
 .cm-note {
   font-size: 12px;
   color: var(--brown-soft);
