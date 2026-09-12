@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-08T00:00:00Z",
+  "title": "Design System: Águila Dorada A.C.",
+  "extensions": {
+    "colorMeta": {
+      "gold": { "role": "primary", "displayName": "Dorado Institucional", "canonical": "#C9A047", "tonalRamp": ["#5A4820", "#83682E", "#AB883C", "#C9A047", "#D7B875", "#E1CB9A", "#ECDEBF", "#F7F1E3"] },
+      "navy": { "role": "secondary", "displayName": "Azul Marino Profundo", "canonical": "#1F3A5F", "tonalRamp": ["#0E1A2B", "#14263E", "#1A3151", "#1F3A5F", "#576B87", "#8493A7", "#B1BAC7", "#DDE1E7"] },
+      "green": { "role": "tertiary", "displayName": "Verde Salvia", "canonical": "#7BA384", "tonalRamp": ["#37493B", "#506A56", "#698B70", "#7BA384", "#9CBAA3", "#B6CCBB", "#D1DFD4", "#EBF1ED"] },
+      "terracotta": { "role": "tertiary", "displayName": "Terracota", "canonical": "#D47A5A", "tonalRamp": ["#5F3728", "#8A4F3B", "#B4684D", "#D47A5A", "#DF9B83", "#E7B6A4", "#F0D0C5", "#F9EBE6"] },
+      "brown": { "role": "neutral", "displayName": "Café", "canonical": "#2B1B14", "tonalRamp": ["#130C09", "#1C120D", "#251711", "#2B1B14", "#60544F", "#8A827E", "#B5AFAD", "#DFDDDC"] },
+      "cream": { "role": "neutral", "displayName": "Crema", "canonical": "#FAF6EF", "tonalRamp": ["#716F6C", "#A3A09B", "#D5D1CB", "#FAF6EF", "#FBF8F3", "#FCFAF6", "#FDFCF9", "#FEFEFD"] },
+      "paper": { "role": "neutral", "displayName": "Papel", "canonical": "#FFFDF9", "tonalRamp": ["#737270", "#A6A4A2", "#D9D7D4", "#FFFDF9", "#FFFEFB", "#FFFEFC", "#FFFEFD", "#FFFFFE"] },
+      "line": { "role": "neutral", "displayName": "Línea", "canonical": "#E4DBC8", "tonalRamp": ["#67635A", "#948E82", "#C2BAAA", "#E4DBC8", "#EBE4D6", "#F0EBE1", "#F6F2EC", "#FBFAF7"] },
+      "crisis-red": { "role": "alert", "displayName": "Rojo de Crisis", "canonical": "#8F2F22" },
+      "gold-ink": { "role": "primary", "displayName": "Dorado Tinta", "canonical": "#836227", "tonalRamp": ["#3B2C11", "#573F19", "#6F5220", "#836227", "#A98750", "#C2A87D", "#DBCAAA", "#EFE7D6"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "H1 del hero únicamente." },
+      "headline": { "displayName": "Headline", "purpose": "Títulos de sección (head-block h2)." },
+      "title": { "displayName": "Title", "purpose": "Títulos de tarjeta (servicio, evento)." },
+      "body": { "displayName": "Body", "purpose": "Párrafos y descripciones." },
+      "label": { "displayName": "Label", "purpose": "Kickers, tags, etiquetas de marca." }
+    },
+    "shadows": [
+      { "name": "hero-photo", "value": "0 20px 38px rgba(43,27,20,.2)", "purpose": "Acento ambiental permanente bajo el bloque fotográfico del hero." },
+      { "name": "card-hover", "value": "0 14px 28px rgba(43,27,20,.14)", "purpose": "Feedback de hover/focus en event-card." },
+      { "name": "cta-hover", "value": "0 5px 12px rgba(31,58,95,.2)", "purpose": "Feedback de hover en CTA de registro a evento." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.25, 0.1, 0.25, 1) .15s", "purpose": "Transición estándar de botones y tarjetas (transform, box-shadow)." },
+      { "name": "ease-media", "value": "ease .35s", "purpose": "Transición de zoom/filtro en imágenes de evento al hacer hover." }
+    ],
+    "breakpoints": [
+      { "name": "lg", "value": "980px" },
+      { "name": "md", "value": "640px" },
+      { "name": "sm", "value": "480px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón Primario (Dorado)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA principal, ej. 'Agendar terapia'.",
+      "html": "<a class=\"ds-btn-gold\" href=\"#\">Agendar terapia</a>",
+      "css": ".ds-btn-gold { display: inline-block; padding: 12px 24px; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14.5px; background: #C9A047; color: #2B1B14; transition: transform .15s ease, background .15s ease; } .ds-btn-gold:hover { background: #A9812F; transform: translateY(-1px); } .ds-btn-gold:focus-visible { outline: 3px solid #A9812F; outline-offset: 3px; }"
+    },
+    {
+      "name": "Botón Secundario (Navy)",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "CTA de registro a evento o acción institucional secundaria.",
+      "html": "<a class=\"ds-btn-navy\" href=\"#\">Ver eventos</a>",
+      "css": ".ds-btn-navy { display: inline-block; padding: 12px 24px; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14.5px; background: #1F3A5F; color: #FAF6EF; transition: transform .15s ease, background .15s ease; } .ds-btn-navy:hover { background: #152A45; transform: translateY(-1px); } .ds-btn-navy:focus-visible { outline: 3px solid #A9812F; outline-offset: 3px; }"
+    },
+    {
+      "name": "Botón Outline",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "CTA terciario de baja énfasis.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">Conocer más</a>",
+      "css": ".ds-btn-outline { display: inline-block; padding: 12px 24px; border-radius: 6px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14.5px; border: 1.5px solid #2B1B14; color: #2B1B14; background: transparent; transition: transform .15s ease, background .15s ease, color .15s ease; } .ds-btn-outline:hover { background: #2B1B14; color: #FAF6EF; transform: translateY(-1px); }"
+    },
+    {
+      "name": "Tag de Categoría",
+      "kind": "chip",
+      "refersTo": "event-tag",
+      "description": "Etiqueta de categoría sobre foto de evento; color fijo por categoría (código de color).",
+      "html": "<span class=\"ds-tag ds-tag-comunidad\">Comunidad</span>",
+      "css": ".ds-tag { position: relative; display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 20px; letter-spacing: .2px; } .ds-tag-comunidad { background: #C9A047; color: #2B1B14; } .ds-tag-educativo { background: #1F3A5F; color: #FAF6EF; } .ds-tag-asistencial { background: #7BA384; color: #2B1B14; } .ds-tag-cultural { background: #D47A5A; color: #FAF6EF; }"
+    },
+    {
+      "name": "Tarjeta de Evento",
+      "kind": "card",
+      "refersTo": "event-card",
+      "description": "Card de evento con foto, fecha, título y precio; eleva en hover.",
+      "html": "<div class=\"ds-event-card\"><div class=\"ds-event-body\"><div class=\"ds-event-date\"><span class=\"d\">18</span><span class=\"m\">OCT</span></div><div class=\"ds-event-info\"><h4>Taller comunitario</h4><span class=\"ds-price\">$50 MXN</span></div></div></div>",
+      "css": ".ds-event-card { background: #FFFDF9; border: 1px solid #E4DBC8; border-radius: 12px; overflow: hidden; transition: transform .15s ease, box-shadow .15s ease; } .ds-event-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(43,27,20,.14); } .ds-event-body { padding: 20px 22px 22px; display: flex; gap: 14px; } .ds-event-date { font-family: 'Montserrat', sans-serif; line-height: 1.15; min-width: 48px; padding-right: 12px; border-right: 1px solid #E4DBC8; } .ds-event-date .d { font-size: 26px; font-weight: 700; color: #2B1B14; } .ds-event-date .m { font-size: 12.5px; color: #54423A; } .ds-event-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; margin-bottom: 6px; color: #2B1B14; } .ds-price { display: inline-flex; font-size: 13px; font-weight: 700; color: #2B1B14; background: rgba(201,160,71,.16); padding: 3px 10px; border-radius: 20px; }"
+    },
+    {
+      "name": "Tarjeta de Servicio",
+      "kind": "card",
+      "refersTo": "service-card",
+      "description": "Card de fondo sólido (café o navy) para los dos servicios clínicos base.",
+      "html": "<div class=\"ds-service-card\"><h3>Terapia</h3><p>Atención psicológica individual, presencial y en línea.</p><span class=\"ds-service-link\">Más información</span></div>",
+      "css": ".ds-service-card { background: #2B1B14; color: #FAF6EF; border-radius: 12px; padding: 40px; display: flex; flex-direction: column; gap: 16px; min-height: 280px; } .ds-service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: #FAF6EF; } .ds-service-card p { font-size: 15px; color: #D8CCC2; max-width: 44ch; } .ds-service-link { font-size: 14px; font-weight: 600; border-bottom: 1.5px solid currentColor; align-self: flex-start; margin-top: auto; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Santuario Cálido",
+    "overview": "Águila Dorada se presenta como un refugio humano con la seriedad de una institución de salud mental formalmente constituida: cálido sin perder autoridad. La paleta parte de tonos tierra (crema, papel, café) que actúan como el 'suelo' del sitio, sobre el cual el dorado marca los momentos de invitación (CTAs, acentos editoriales) y cuatro colores institucionales — dorado, navy, verde y terracota — codifican categorías de acción sin competir entre sí en una misma vista. La tipografía combina una serif editorial (Cormorant Garamond) para todo titular, con una sans humanista (Montserrat) para el cuerpo — la misma dualidad calidez/seriedad que gobierna el color. El diseño es de baja densidad, con secciones amplias (56px de padding vertical) y bloques de texto acotados (46–64ch) que favorecen lectura pausada sobre densidad informativa.",
+    "keyCharacteristics": [
+      "Fondo cálido de base (crema/papel), nunca blanco puro ni gris frío.",
+      "Un acento dorado que marca CTAs y momentos editoriales, usado con moderación.",
+      "Cuatro colores de categoría fijos que codifican tipo de evento/acción en todo el sitio.",
+      "Serif display + sans body como firma tipográfica constante.",
+      "Secciones espaciosas, cards con esquinas suavemente redondeadas, casi sin bordes duros."
+    ],
+    "rules": [
+      { "name": "La Regla del Código de Categoría", "body": "Cada una de las cuatro categorías institucionales tiene un color fijo y exclusivo: Comunidad = Dorado, Educativo = Navy, Asistencial = Verde, Cultural = Terracota. Este mapeo se aplica siempre en tags de evento, puntos de la bitácora e iconos de estadística; los colores nunca se reasignan a otra categoría ni se usan de forma puramente decorativa fuera de este código.", "section": "colors" },
+      { "name": "La Regla del Rojo de Crisis", "body": "#8F2F22 (y su acento #FFE09B) se usa únicamente en la barra de aviso de crisis. Ningún otro componente del sitio debe tomar este color, para que la señal de emergencia permanezca inequívoca.", "section": "colors" }
+    ],
+    "dos": [
+      "Do usar el código de categoría (dorado/navy/verde/terracota) de forma consistente en tags, iconos y timeline — nunca reasignar un color a otra categoría.",
+      "Do mantener el rojo de crisis (#8F2F22) exclusivo a la barra de aviso de crisis.",
+      "Do usar Cormorant Garamond para todo titular y Montserrat para todo cuerpo/etiqueta; no introducir una tercera familia tipográfica.",
+      "Do mantener esquinas redondeadas suaves (6–16px) y cápsulas completas para chips/tags."
+    ],
+    "donts": [
+      "Don't usar blanco puro ni gris frío como fondo — el sistema es cálido/terroso de base (--cream, --paper).",
+      "Don't aplicar sombra decorativa fuera de los casos ya establecidos (hero, hover de tarjetas); no convertir la elevación en una regla global del sistema.",
+      "Don't inventar testimonios, cifras de impacto o casos de éxito en ningún componente visual — solo evidencia real aportada por la asociación (ver PRODUCT.md).",
+      "Don't alterar los datos de contacto, CLABE o enlaces institucionales al ajustar estilos de los componentes que los muestran."
+    ]
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-09-08T21:21:09.246Z",
+        "reason": "Brand typography confirmed intentional during /impeccable document (DESIGN.md 'El Santuario Cálido'); predates this session, not something introduced by it."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-08T21:21:19.381Z",
+        "reason": "Warm cream background confirmed intentional brand identity (El Santuario Cálido) during /impeccable document interview; predates this session."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "styles.css"
+        ],
+        "createdAt": "2026-09-08T21:21:19.413Z",
+        "reason": "Warm cream background confirmed intentional brand identity (El Santuario Cálido) during /impeccable document interview; predates this session."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-08T21:21:19.443Z",
+        "reason": "Verified false positive: .info-row and .cta-band content already receives horizontal padding from ancestor containers (.info-card 30px; .wrap/.cta-col 32-40px); not actually flush against page edge."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "styles.css"
+        ],
+        "createdAt": "2026-09-08T21:21:19.472Z",
+        "reason": "Verified false positive: .info-row and .cta-band content already receives horizontal padding from ancestor containers (.info-card 30px; .wrap/.cta-col 32-40px); not actually flush against page edge."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pages/nosotros.html"
+        ],
+        "createdAt": "2026-09-08T22:14:16.500Z",
+        "reason": "Brand identity (El Santuario Cálido) confirmed intentional during /impeccable document; same warm cream ground already sanctioned for index.html and styles.css. New team page inherits the established world."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pages/eventos-pasados.html"
+        ],
+        "createdAt": "2026-09-10T00:00:00.000Z",
+        "reason": "Brand identity (El Santuario Cálido) confirmed intentional; same warm cream ground already sanctioned for index.html, styles.css and pages/nosotros.html. New past-events page inherits the established world."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "pages/eventos-pasados.html"
+        ],
+        "createdAt": "2026-09-10T19:41:46.473Z",
+        "reason": "Same verified false positive already sanctioned for index.html/styles.css: content sits inside .wrap (32-40px horizontal padding); the only padding:0 box is the Instagram embed blockquote, whose zero padding is Instagram's own required embed style."
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "pages/eventos-pasados.html"
+        ],
+        "createdAt": "2026-09-10T21:11:12.965Z",
+        "reason": "Intentional: .ig-card is a deliberate crop frame (overflow:hidden) that clips the absolutely-positioned Instagram embed down to just the photo, hiding IG's own header/like-bar. The positioned children are the cropped embed and the title overlay by design, not tooltips/menus/popovers that need to escape."
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pages/contacto.html"
+        ],
+        "createdAt": "2026-09-10T22:12:20.466Z",
+        "reason": "project design system: site-wide 'El Santuario Cálido' world (DESIGN.md) uses --cream as the deliberate base surface across index, nosotros and eventos-pasados"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "pages/contacto.html"
+        ],
+        "createdAt": "2026-09-10T22:20:13.189Z",
+        "reason": "reviewed: page's own bordered/colored containers all clear 8px (cm-card 24px, info-card 28px, inputs 11-13px, choice labels 9/14px); trigger is the shared .crisis-bar .crisis-action chrome (5px vertical) inherited unchanged from index/nosotros/eventos-pasados, predates this page"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pages/servicios.html"
+        ],
+        "createdAt": "2026-09-10T23:30:00.000Z",
+        "reason": "project design system: site-wide 'El Santuario Cálido' world (DESIGN.md) uses --cream as the deliberate base surface across index, nosotros, eventos-pasados and contacto; new services page inherits the established world"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "pages/servicios.html"
+        ],
+        "createdAt": "2026-09-10T23:30:00.000Z",
+        "reason": "same verified false positive already sanctioned for the sibling pages: page content sits inside .wrap (32px horizontal padding) and the page's own containers clear 8px (service-card 40px, info-card 28px, proc-step 22-24px, cm-card 24px); the trigger is the shared .crisis-bar .crisis-action chrome (5px vertical) inherited unchanged"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pages/voluntariado.html"
+        ],
+        "createdAt": "2026-09-10T23:59:00.000Z",
+        "reason": "project design system: site-wide 'El Santuario Cálido' world (DESIGN.md) uses --cream as the deliberate base surface across index, nosotros, eventos-pasados, contacto and servicios; new volunteering page inherits the established world"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "pages/voluntariado.html"
+        ],
+        "createdAt": "2026-09-10T23:59:00.000Z",
+        "reason": "same verified false positive already sanctioned for the sibling pages: page content sits inside .wrap (32px horizontal padding) and the page's own containers clear 8px (info-card 28px, proc-step 22-24px, cm-card 24px); the trigger is the shared .crisis-bar .crisis-action chrome (5px vertical) inherited unchanged"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pages/privacidad.html"
+        ],
+        "createdAt": "2026-09-10T23:59:00.000Z",
+        "reason": "project design system: site-wide 'El Santuario Cálido' world (DESIGN.md) uses --cream as the deliberate base surface across the whole site; new privacy-notice page inherits the established world"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "pages/privacidad.html"
+        ],
+        "createdAt": "2026-09-10T23:59:00.000Z",
+        "reason": "same verified false positive already sanctioned for the sibling pages: page content sits inside .wrap (32px) and .legal-doc (40/44px); the trigger is the shared .crisis-bar .crisis-action chrome (5px vertical) inherited unchanged"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-12T01:21:32.442Z",
+        "reason": "lightbox-img placeholder: <img id=lightboxImg src=\"\"> lives inside [hidden] #eventLightbox and is only ever shown after JS sets both hidden=false and src together in openLightbox(); intentional on-demand lightbox pattern, not a broken image"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "404.html"
+        ],
+        "createdAt": "2026-09-12T06:05:30.017Z",
+        "reason": "project design system: site-wide 'El Santuario Cálido' world (DESIGN.md) uses --cream as the deliberate base surface across the whole site; 404.html inherits the established world"
+      }
+    ]
+  }
+}

@@ -20,3 +20,12 @@ build/
 *.log
 *.tmp
 *.swp
+
+# Skills y configuración local de Claude Code (herramientas del agente, no son parte del sitio)
+.claude/skills/
+.claude/agents/
+.claude/settings.local.json
+.agents/
+.impeccable/hook.cache.json
+.impeccable/review/
+skills-lock.json

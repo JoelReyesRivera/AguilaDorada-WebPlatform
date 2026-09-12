@@ -10,5 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send IndexNow Ping
+        # PRIVACIDAD AÚN NO DESPLEGADA: pages/privacidad.html no está en urlList a propósito.
+        # Agrégala ahí (dentro del JSON de abajo) cuando la página esté lista para publicarse.
         run: |
-          curl -s "https://api.indexnow.org/indexnow?url=https://aguiladorada.org/&key=cf3968cf08a949beb976d7c0f429976f"
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host": "aguiladorada.org",
+              "key": "cf3968cf08a949beb976d7c0f429976f",
+              "keyLocation": "https://aguiladorada.org/cf3968cf08a949beb976d7c0f429976f.txt",
+              "urlList": [
+                "https://aguiladorada.org/",
+                "https://aguiladorada.org/pages/servicios.html",
+                "https://aguiladorada.org/pages/nosotros.html",
+                "https://aguiladorada.org/pages/eventos-pasados.html",
+                "https://aguiladorada.org/pages/contacto.html",
+                "https://aguiladorada.org/pages/voluntariado.html"
+              ]
+            }'
