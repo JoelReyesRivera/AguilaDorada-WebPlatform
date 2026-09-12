@@ -34,7 +34,7 @@ El diferenciador central es la **accesibilidad económica real**: el costo de la
 - Sitio estático (HTML5, CSS3, JavaScript vanilla, Google Fonts); sin backend propio.
 - Landing page (`index.html`) más páginas internas en `pages/` (p. ej. `nosotros.html`).
 - Diseño responsive (escritorio, tablet, móvil) y mejoras de accesibilidad ya implementadas: foco visible, texto alternativo, contraste reforzado, soporte para preferencia de movimiento reducido.
-- Es una **A.C. (asociación civil) formalmente constituida**; el estatus legal debe reflejarse con precisión (no describirla como empresa con fines de lucro ni clínica privada genérica).
+- Es una **A.C. (asociación civil) en proceso de constitución** (aún no protocolizada); el estatus legal debe reflejarse con precisión (no describirla como ya constituida, como empresa con fines de lucro, ni como clínica privada genérica). Ver `pages/nosotros.html`.
 
 ## Brand Commitments
 
