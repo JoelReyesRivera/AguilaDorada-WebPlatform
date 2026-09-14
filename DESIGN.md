@@ -11,11 +11,11 @@ colors:
   gold-deep: "#A9812F"
   gold-ink: "#836227"
   green: "#7BA384"
-  green-deep: "#52765B"
+  green-deep: "#4A6B52"
   navy: "#1F3A5F"
   navy-deep: "#152A45"
   terracotta: "#D47A5A"
-  terracotta-deep: "#B85C3D"
+  terracotta-deep: "#A85234"
   line: "#E4DBC8"
   crisis-red: "#8F2F22"
 typography:
@@ -129,8 +129,8 @@ La paleta es cálida y terrosa en la base, con un sistema de cuatro colores inst
 - **Azul Marino Profundo** (`#1F3A5F`, hover `#152A45`): segundo color de acción — CTAs de eventos/registro (`.btn-navy`), servicio de Diagnóstico, y la categoría "Educativo".
 
 ### Tertiary
-- **Verde Salvia** (`#7BA384`, texto `#52765B`): usado en kickers/etiquetas ("hero-kicker", "kicker") y la categoría "Asistencial".
-- **Terracota** (`#D47A5A`, texto `#B85C3D`): acentos de hover en navegación y la categoría "Cultural".
+- **Verde Salvia** (`#7BA384`, texto `#4A6B52`): usado en kickers/etiquetas ("hero-kicker", "kicker") y la categoría "Asistencial". El tono de texto se oscureció el 12 de septiembre de 2026 (de `#52765B` a `#4A6B52`) para pasar de 4.31:1 a 5.04:1 de contraste sobre `--cream-alt` — visualmente casi idéntico.
+- **Terracota** (`#D47A5A`, texto `#A85234`): acentos de hover en navegación y la categoría "Cultural". El tono de texto se oscureció el 12 de septiembre de 2026 (de `#B85C3D` a `#A85234`) por la misma razón: 4.45:1 → 5.21:1.
 
 ### Neutral
 - **Crema** (`#FAF6EF`): fondo base del body.
@@ -207,7 +207,7 @@ Esquinas suavemente redondeadas en casi todo, en una progresión de 4 a 16px seg
 Punto circular de 16px por evento, coloreado según la Regla del Código de Categoría, con un símbolo interno (`+`, `□`, `✦`) que refuerza la categoría más allá del color. El ítem "hoy" se distingue con fondo `--cream-alt` y una barra vertical continua, funcionando como ancla visual del progreso institucional.
 
 ### Navigation
-- Header pegajoso (`sticky`) sobre `--paper` con borde inferior `--line`. Enlaces en Montserrat 14.5px/500; hover a `--terracotta-deep`. En móvil (<980px) colapsa a menú hamburguesa con panel desplegable de enlaces apilados.
+- Header pegajoso (`sticky`) sobre `--paper` con borde inferior `--line`. Enlaces en Montserrat 14.5px/500; hover a `--terracotta-deep`. En móvil (<1320px) colapsa a menú hamburguesa con panel desplegable de enlaces apilados — el quiebre se movió de 980px a 1320px al renombrar "Eventos" a "Próximos eventos" en el nav, para que la etiqueta más larga siga cabiendo en escritorio. El menú móvil cierra con Escape (devuelve el foco al botón) además de al elegir un enlace.
 
 ## Do's and Don'ts
 

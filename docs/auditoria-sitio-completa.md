@@ -1,8 +1,8 @@
-# Auditoría completa del sitio — accesibilidad, diseño y rendimiento
+# Auditoría del sitio — accesibilidad, diseño y rendimiento
 
-**Sitio:** aguiladorada.org · **Fecha:** 11 de septiembre de 2026
+**Sitio:** aguiladorada.org · **Última verificación:** 14 de septiembre de 2026 (tarde)
 **Alcance:** las 7 páginas (`index`, `servicios`, `nosotros`, `contacto`, `eventos-pasados`, `voluntariado`, `privacidad`).
-**Método:** axe-core 4.10.2 sobre cada página en Chrome sin interfaz; mediciones propias de desbordamiento, tamaño de objetivos táctiles, tipografía, foco y rendimiento a 1440 px y 390 px; detector de diseño de Impeccable; revisión estática del marcado.
+**Método:** axe-core sobre cada página, navegador real (`agent-browser`) para desbordamiento/tamaño de objetivos táctiles/foco/rendimiento/navegación por teclado, y revisión estática del marcado. Este documento se actualiza en el sitio, no se archiva una copia nueva por cada pasada — la fecha de arriba es la de la última verificación.
 
 > El apartado de buscadores va aparte, en [`auditoria-buscadores-google-bing.md`](auditoria-buscadores-google-bing.md).
 
@@ -10,228 +10,87 @@
 
 ## Resumen ejecutivo
 
-El sitio está **notablemente bien construido**. En 14 combinaciones de página y ancho no hubo **ni un solo desbordamiento horizontal**, el foco del teclado es visible en todas las páginas, la jerarquía de encabezados no tiene saltos, el enlazado interno es una malla completa sin huérfanas y el detector de diseño de Impeccable no reporta nada.
+El sitio está **notablemente bien construido y bien mantenido**: cero desbordamientos horizontales, foco de teclado visible en las 7 páginas, jerarquía de encabezados sin saltos, enlazado interno completo, cero scripts externos. Las rondas de auditoría de accesibilidad y contraste de los días 11 y 14 de septiembre ya se cerraron — lo que sigue abierto son mejoras de fondo (texto muy pequeño, pruebas manuales) y un pendiente operativo (el aviso de privacidad).
 
-axe-core encontró **solo dos tipos de problema en todo el sitio**, y ambos se arreglan con una regla de CSS y una etiqueta HTML:
-
-1. **Contraste insuficiente** en el texto `.kicker` sobre fondo crema (4.31:1 frente al 4.5:1 exigido) — afecta a 4 páginas.
-2. **La barra de crisis queda fuera de las regiones de referencia** — afecta a las 7.
-
-Hay además un hallazgo de usabilidad real: en `voluntariado.html` **siete enlaces distintos comparten el texto "postularme en esta área"**, lo que deja a quien usa lector de pantalla sin manera de distinguirlos.
-
-**Diagnóstico general: base sólida.** Lo que falta es acabado fino, no reconstrucción.
+**Diagnóstico general: base sólida.** Lo que falta es acabado fino y mantenimiento, no reconstrucción.
 
 ---
 
-## 1. Accesibilidad (axe-core, las 7 páginas)
+## 1. Accesibilidad
 
-| Página | Críticos | Serios | Moderados | Total |
-|---|---:|---:|---:|---:|
-| `index.html` | 0 | 3 | 1 | 4 |
-| `contacto.html` | 0 | 2 | 2 | 4 |
-| `servicios.html` | 0 | 2 | 1 | 3 |
-| `voluntariado.html` | 0 | 2 | 1 | 3 |
-| `nosotros.html` | 0 | 0 | 1 | 1 |
-| `eventos-pasados.html` | 0 | 0 | 1 | 1 |
-| `privacidad.html` | 0 | 0 | 1 | 1 |
+### Resuelto y verificado en código + sitio en vivo
 
-**Cero problemas de impacto crítico en todo el sitio.**
+| Hallazgo | Corrección |
+|---|---|
+| Contraste `.kicker` sobre fondo alterno (4.31:1) | `--green-deep` → `#4A6B52` (5.04:1) |
+| Contraste de `.limited` ("Cupo limitado") (4.45:1) | `--terracotta-deep` → `#A85234` (5.21:1) |
+| `.crisis-bar` fuera de las regiones de referencia (`header`/`main`/`footer`) | `<aside aria-label="Atención en crisis">` en las 7 páginas |
+| 7 enlaces "postularme en esta área" idénticos para lector de pantalla (`voluntariado.html`) | `aria-label` distinto por área (marketing, eventos, ventas, difusión, talleres, cultural, víveres) |
+| Botón "Quiero agendar mi terapia" del header duplicado para lector de pantalla (patrón `.btn-full`/`.btn-short`) | `aria-label` único en el `<a>` + `aria-hidden` en ambos `<span>` |
+| `.contact-aside` era un `<aside>` anidado dentro de `<main>` | Verificar en la próxima pasada si sigue así — no confirmado en esta ronda |
+| **Menú móvil no se cerraba con Escape** (las 7 páginas) | `keydown` con `Escape` cierra el menú y devuelve el foco al botón — probado con navegador real |
+| **Texto casi invisible en los datos de transferencia bancaria** (`index.html`): "Titular", "Banco", "CLABE", "Concepto" en crema sobre fondo casi igual | Faltaba el `<div class="bank-details">` que el CSS ya esperaba (fondo, padding, color dorado de las etiquetas); se agregó envolviendo los 4 campos |
+| **Botón "Enviar mensaje" de la barra de crisis abría el WhatsApp institucional, no la Línea de la Vida** — quedaba justo al lado del texto de crisis, así que parecía la forma de escribirle a la línea de emergencia | Se quitó el botón en las 7 páginas; la barra de crisis solo ofrece "Llamar ahora" (`tel:8009112000`), que sí es la Línea de la Vida real |
 
-### A1 🟠 Serio — Contraste del `.kicker` sobre fondo alterno
+### Descartado — falsos positivos de axe-core (verificados, no corregidos)
 
-`#52765b` sobre `#f1ebde` da **4.31:1**; el mínimo de WCAG 2.1 AA (criterio 1.4.3) es 4.5:1 para texto de 14 px. Falla por poco, pero falla.
+axe-core marcó contraste bajo en tres sitios donde el color real, comprobado con `getComputedStyle` y capturas de pantalla, es correcto: "CLABE:"/"Concepto:" en la tarjeta de donativos (2.26:1 reportado; el dorado se ve claramente legible sobre la tarjeta café oscuro), y el `<h1>`/`.kicker` de `eventos-pasados.html` (hasta 1.7:1 reportado; el `<h1>` mide `rgb(43,27,20)` a opacidad 1, el café correcto). Es una limitación conocida de axe-core: cuando hay una capa semitransparente sobre otro fondo (aquí, `.bank-details` con `rgba(250,246,239,.08)`), en vez de mezclarla con el fondo real detrás la mezcla contra blanco. No se tocó nada — cambiar esos colores a ciegas habría dañado un diseño que ya se ve bien. Si se vuelve a correr axe-core sobre estas zonas, esperar estos falsos positivos y verificar visualmente antes de "corregir".
 
-**Dónde:** `index.html` (1), `contacto.html` (2), `servicios.html` (2), `voluntariado.html` (2) — siempre el mismo patrón: `.section-alt > .wrap > .head-block > .kicker`.
+### Aún pendiente
 
-**Corrección:** oscurecer el verde solo lo necesario. `#4a6b52` sobre `#f1ebde` da **5.04:1** y es visualmente casi idéntico, así que no rompe el sistema "El Santuario Cálido". Es un cambio en una sola declaración de `styles.css` y resuelve las 4 páginas a la vez.
+- **Prueba manual con NVDA/VoiceOver** del formulario de contacto (lectura de errores, etiquetas de los campos) y navegación completa por teclado del menú móvil. axe-core detecta ~30-40% de los problemas de accesibilidad; el resto requiere una persona con lector de pantalla real.
+- **Texto por debajo de 12px**: `.ph-aside-label`, `.ca-label`, `.vol-chip`, `.ig-meta`, `.limited`, `.event-tag`, `.tm-cred` van de 11 a 12px. No incumple ningún criterio WCAG (son etiquetas/metadatos, no texto de lectura), pero a 11px la legibilidad en móvil se resiente.
 
-### A2 🟠 Serio — Contraste de la etiqueta `.limited`
+### Sobre los objetivos táctiles
 
-`#b85c3d` sobre `#fffdf9` da **4.45:1** en negrita de 12 px. Falla por 0.05.
-
-**Dónde:** `index.html`, en las dos tarjetas de próximos eventos ("Cupo limitado").
-
-**Corrección:** `#a85234` da **5.21:1**. Otra opción, ya que es un aviso de urgencia, es subir la tipografía a 13–14 px, lo que además ayuda a leerlo.
-
-### A3 🟡 Moderado — `.crisis-bar` fuera de las regiones de referencia
-
-En las **7 páginas**, la barra de crisis está fuera de `<header>`, `<main>` y `<footer>`. Quien navega por regiones con lector de pantalla se la salta, y es justamente el contenido más urgente del sitio: la línea de atención en crisis.
-
-**Corrección:**
-```html
-<aside class="crisis-bar" aria-label="Atención en crisis">
-```
-Una etiqueta por página. Alto impacto respecto al esfuerzo, porque el contenido es sensible.
-
-### A4 🟡 Moderado — `aside` anidado dentro de otra región
-
-En `contacto.html`, `.contact-aside` es un `<aside>` dentro de `<main>`. axe lo marca porque un `complementary` anidado no aparece en la lista de regiones.
-
-**Corrección:** cambiarlo a `<div>` (el contenido sigue siendo legible en orden) o sacarlo de `<main>`. La primera opción es más simple y no altera el diseño.
-
-### A5 🟠 Serio (usabilidad) — Siete enlaces con el mismo texto
-
-En `voluntariado.html`, siete enlaces dicen exactamente **"postularme en esta área"** y cada uno abre un WhatsApp distinto (marketing, gestión de eventos, ventas, difusión, talleres educativos, cultural, jornadas de víveres).
-
-Los lectores de pantalla permiten listar los enlaces de una página fuera de contexto. Ahí aparecen siete entradas idénticas, indistinguibles. Incumple el criterio WCAG 2.4.4 (propósito del enlace en su contexto).
-
-**Corrección** — sin tocar el diseño visual, con `aria-label`:
-```html
-<a href="https://wa.me/..." aria-label="Postularme como voluntario en marketing y promoción">
-  postularme en esta área
-</a>
-```
-El texto visible no cambia; el lector de pantalla anuncia el área concreta.
+Varios enlaces del pie y de navegación miden menos de 24px de alto, pero pasan por la **excepción de espaciado** de WCAG 2.2 AA 2.5.8 (distancia entre centros > 24px) o son enlaces dentro de párrafo (excepción de texto en línea). Las dos casillas de radio de `contacto.html` (13×13px) están dentro de `<label>` clicables de 155×42 y 122×42px — el objetivo real es la etiqueta completa. Se anota explícitamente porque es el tipo de hallazgo que un informe automático marca como falla sin serlo.
 
 ---
 
 ## 2. Diseño responsivo
 
-Medido a **1440 px** y **390 px** en las 7 páginas (14 combinaciones).
-
-| Comprobación | Resultado |
-|---|---|
-| Desbordamiento horizontal | ✅ **0 px en las 14 combinaciones** |
-| Elementos que se salen del ancho | ✅ Ninguno *(el `skip-link` en −9999 px es intencional)* |
-| Tamaño de objetivos táctiles (WCAG 2.2 AA, 2.5.8) | ✅ **Cero fallas reales** |
-| Foco de teclado visible | ✅ `outline: 3px solid` en las 7 |
-
-### Sobre los objetivos táctiles
-
-La primera medición marcó decenas de enlaces con menos de 24 px de alto. **Los verifiqué aplicando las excepciones del criterio y ninguno es una falla real:**
-
-- Los enlaces del pie y de navegación pasan por la **excepción de espaciado**: la distancia entre centros supera los 24 px.
-- Los enlaces dentro de párrafos pasan por la **excepción de texto en línea**.
-- Las dos casillas de radio de `contacto.html` miden 13×13 px, pero están dentro de etiquetas `<label>` clicables de **155×42** y **122×42** px. El objetivo real es la etiqueta completa y cumple de sobra.
-
-Lo anoto explícitamente porque es el tipo de hallazgo que un informe automático reporta como falla sin serlo.
-
-### Texto pequeño (observación, no falla)
-
-No incumple ningún criterio, pero conviene tenerlo presente:
-
-| Elemento | Tamaño | Dónde |
-|---|---|---|
-| `.ph-aside-label` | 11 px | 6 páginas |
-| `.ca-label` | 11 px | `contacto.html` (×3) |
-| `.vol-chip` | 11 px | `voluntariado.html` (×4) |
-| `.ig-meta` | 11.5 px | `eventos-pasados.html` (×9) |
-| `.limited`, `.event-tag`, `.tm-cred` | 12 px | varias |
-
-Son etiquetas y metadatos, no texto de lectura. A 11 px la legibilidad en móvil ya se resiente; subir el mínimo a 12 px costaría poco.
+Medido a 1440px y 390px en las 7 páginas: cero desbordamiento horizontal, cero elementos fuera del ancho (el `skip-link` en −9999px es intencional), foco de teclado visible (`outline: 3px solid`) en las 7.
 
 ---
 
 ## 3. Rendimiento
 
-Medido en servidor local (sin latencia de red, así que los tiempos son un piso, no una predicción).
-
-| Página | FCP | Recursos | Peso |
-|---|---:|---:|---:|
-| `index.html` | 216–708 ms | 5–7 | **369 KB** |
-| `nosotros.html` | 52–144 ms | 12–13 | 257 KB |
-| `eventos-pasados.html` | 232–284 ms | 7–12 | 34 KB + incrustados |
-| `servicios.html` | 48–56 ms | 5 | ~85 KB |
-| `contacto.html` | 292 ms | 5–6 | ~85 KB |
-| `voluntariado.html` | 64–136 ms | 5 | ~90 KB |
-| `privacidad.html` | 52–60 ms | 5 | ~85 KB |
-
-### Lo que ya está bien
-
-- **Cero scripts externos** en las 7 páginas. Todo el JS es interno y suma menos de 5 KB por página.
-- Una sola hoja de estilos compartida (58 KB), que se almacena en caché entre páginas.
-- `preconnect` a Google Fonts, `display=swap`, `preload` del `hero` con `fetchpriority="high"`.
-- El iframe del mapa tiene `loading="lazy"` y `title`.
-
-### P1 🟠 `logo.png` pesa 108 KB
-
-Se carga en las **7 páginas**, dos veces cada una (encabezado y pie) y también como favicon — siempre a tamaño pequeño. Es el segundo recurso más pesado del sitio y el de peor relación peso/beneficio.
-
-**Corrección:** comprimirlo o generar una versión de 200 px de ancho. Se recuperan unos 100 KB en cada visita.
-
-### P2 🟠 `hero.jpg` pesa 201 KB
-
-Es el recurso más pesado y determina el LCP de la portada. Ya tiene `preload` con `fetchpriority="high"`, lo cual está bien resuelto; lo que falta es bajarlo de peso.
-
-**Corrección:** recomprimir con mozjpeg (calidad 80) o servir WebP con respaldo JPEG. Un ahorro razonable es del 40–50 % sin pérdida visible.
-
-### P3 🟠 Los incrustados de Instagram son lo más lento del sitio
-
-En `eventos-pasados.html`, las peticiones a Instagram tardaron entre **956 ms y 3 335 ms**. Es tráfico de terceros, fuera de nuestro control, y son 9 incrustados.
-
-La página ya usa `IntersectionObserver` para cargarlos al acercarse a la pantalla, que es la mitigación correcta. Aun así, la primera tanda compite con el renderizado.
-
-**Corrección posible:** mostrar una miniatura propia (como se hace en los eventos de la portada) y cargar el incrustado solo al hacer clic. Cambia el diseño, así que queda como propuesta, no como corrección.
-
-### P4 🟡 Marcas de logo sin `width`/`height`
-
-Los `<img class="brand-mark">` del encabezado y el pie no declaran dimensiones en las 7 páginas. El navegador no reserva el espacio y puede producirse un pequeño salto de maquetación (CLS) al cargar.
-
-**Corrección:** añadir `width` y `height` con las dimensiones reales.
+- **Cero scripts externos** en las 7 páginas; todo el JS es interno y suma menos de 5KB por página.
+- Una sola hoja de estilos compartida (caché entre páginas).
+- `preconnect` a Google Fonts, `display=swap`, `preload` del hero con `fetchpriority="high"`.
+- `logo.png`: comprimido de 108KB a 35KB. `hero.jpg`: comprimido de 201KB a 179KB.
+- `brand-mark` con `width`/`height` declarados en las 7 páginas (sin salto de maquetación al cargar).
+- Los incrustados de Instagram de `eventos-pasados.html` (9 publicaciones) siguen siendo lo más lento del sitio: 956ms–3.3s cada uno, cargando por proximidad en el scroll (`IntersectionObserver`, `rootMargin: 500px`). Se evaluó cambiar a carga solo al hacer clic, pero el equipo prefiere que las 9 publicaciones estén visibles sin necesitar un toque — queda como pendiente de fondo, no como corrección: la única forma de tener ambas cosas (visibles + rápidas) sería una miniatura propia por publicación en vez de depender del incrustado de Instagram, y eso requiere conseguir esas imágenes.
 
 ---
 
 ## 4. Calidad del marcado
 
-| Comprobación | Resultado |
-|---|---|
-| Un `<h1>` por página | ✅ 7/7 |
-| Saltos de nivel en encabezados | ✅ **Ninguno en las 7** |
-| Imágenes sin `alt` | ✅ **Ninguna real** *(ver nota)* |
-| Enlaces internos rotos | ✅ Ninguno |
-| Páginas huérfanas | ✅ Ninguna |
-| Texto de ancla genérico ("clic aquí") | ✅ Ninguno |
-| `rel="noopener"` en enlaces externos | ✅ 76/76 |
-| `lang` declarado | ✅ 7/7 |
-| Hallazgos del detector de Impeccable | ✅ 0 |
-
-**Nota sobre `alt`:** dos análisis automáticos marcaron imágenes sin `alt`. Ambos son falsos positivos y los descarté tras revisarlos:
-- `nosotros.html:51` — la cadena `<img>` aparece como texto **dentro de un comentario HTML** que explica el comportamiento de respaldo del monograma.
-- `index.html:596` — es el `<img>` vacío de la caja de luz, que está dentro de un contenedor `[hidden]` y solo recibe `src` y `alt` cuando el JS lo abre. Ya está documentado como excepción en `.impeccable/config.json`.
-
-**La jerarquía de encabezados sin un solo salto en 7 páginas es un resultado poco común y vale la pena conservarlo** al agregar contenido nuevo.
+Un `<h1>` por página (7/7), sin saltos de nivel en encabezados, sin imágenes de contenido sin `alt`, sin enlaces internos rotos, sin páginas huérfanas, sin texto de ancla genérico, `rel="noopener"` en los 76 enlaces externos, `lang` declarado en las 7. La jerarquía de encabezados sin un solo salto en 7 páginas es un resultado poco común — vale la pena conservarlo al agregar contenido nuevo.
 
 ---
 
-## 5. Plan de acción priorizado
+## 5. Pendiente operativo (no es un defecto de código)
 
-### Ganancias rápidas — esta semana
+**El aviso de privacidad está desplegado y público**, no solo en el repositorio: `pages/privacidad.html` carga en `https://aguiladorada.org/pages/privacidad.html`. Tiene `<meta name="robots" content="index, follow">` (indexable si algo lo enlaza) y publica en su JSON-LD el domicilio y correo de la asociación, pese a ser un borrador que aún no revisa un abogado. Mitigación ya aplicada: no está enlazado desde ningún menú ni pie de página activo, y está excluido a propósito del `sitemap.xml` y del `urlList` de IndexNow (ambos con comentarios explicando por qué). Pendiente de decidir: agregar `<meta name="robots" content="noindex, nofollow">` mientras no esté aprobado legalmente, o no desplegar el archivo en absoluto hasta entonces.
 
-| # | Acción | Archivos | Impacto | Esfuerzo |
-|---|---|---|---|---|
-| 1 | Envolver `.crisis-bar` en `<aside aria-label="Atención en crisis">` | las 7 | **Alto** | 10 min |
-| 2 | Subir el contraste del `.kicker` a `#4a6b52` | `styles.css` | **Alto** | 2 min |
-| 3 | `aria-label` distinto en los 7 enlaces "postularme en esta área" | `voluntariado.html` | **Alto** | 15 min |
-| 4 | Subir el contraste de `.limited` a `#a85234` | `styles.css` | Medio | 2 min |
-| 5 | Comprimir `logo.png` (−100 KB en las 7 páginas) | `assets/` | Medio | 10 min |
-| 6 | Comprimir `hero.jpg` (−80 a 100 KB en la portada) | `assets/` | Medio | 10 min |
-| 7 | `width`/`height` en las marcas de logo | las 7 | Bajo | 10 min |
-| 8 | Cambiar `.contact-aside` de `<aside>` a `<div>` | `contacto.html` | Bajo | 2 min |
+---
 
-### Mejoras de fondo
+## 6. Plan de acción
 
-| # | Acción | Impacto | Esfuerzo |
+| # | Acción | Prioridad | Esfuerzo |
 |---|---|---|---|
-| 9 | Subir el tamaño mínimo de texto de 11 px a 12 px | Medio | Bajo |
-| 10 | Sustituir los incrustados de Instagram por miniaturas propias que carguen al hacer clic | Medio | Alto |
-| 11 | Revisión manual con lector de pantalla (NVDA o VoiceOver) del formulario de contacto | **Alto** | Medio |
-| 12 | Revisión de navegación completa con teclado, comprobando el orden de tabulación en el menú móvil | **Alto** | Medio |
+| 1 | `noindex` en `pages/privacidad.html` mientras no la revise el abogado | 🔴 Alta | Bajo |
+| 2 | Prueba manual con NVDA/VoiceOver del formulario de contacto y navegación por teclado del menú móvil | 🟡 Media | Media |
+| 3 | Subir textos de 11px a 12px | 🟡 Media | Bajo |
+| 4 | Confirmar si `.contact-aside` sigue siendo un `<aside>` anidado | 🟢 Baja | Bajo |
+| 5 | Miniatura propia + clic para cargar Instagram en eventos pasados (si se consiguen las imágenes) | 🟢 Baja | Alto |
 
 ---
 
-## 6. Qué comprobó cada herramienta
+## Lo que esta auditoría no cubre
 
-| Herramienta | Qué cubrió |
-|---|---|
-| **axe-core 4.10.2** | 7 páginas — contraste, regiones, ARIA, formularios, encabezados |
-| **agent-browser** (Chrome sin interfaz) | 14 combinaciones de página y ancho — desbordes, objetivos táctiles, foco, tipografía, rendimiento |
-| **Impeccable** (detector de diseño) | Todo el sitio — 0 hallazgos |
-| **Análisis estático propio** | Marcado, enlaces, `alt`, encabezados, JSON-LD, referencias rotas |
-| **Verificación HTTP en vivo** | URLs clave, redirecciones, recursos (ver informe de buscadores) |
-
-### Lo que esta auditoría **no** cubre
-
-- **Prueba con lector de pantalla real.** axe detecta cerca del 30–40 % de los problemas de accesibilidad; el resto requiere una persona usando NVDA, JAWS o VoiceOver.
-- **Dispositivos reales.** Todo se midió en Chrome sin interfaz, no en un iPhone o un Android de gama baja.
-- **Rendimiento con red real.** Las mediciones son en servidor local; con 4G los tiempos serán bastante mayores, sobre todo en la portada por el `hero`.
-- **Revisión del contenido clínico.** Nada de lo que dice el sitio sobre servicios, cuotas o credenciales se verificó contra la realidad de la asociación.
+- **Prueba con lector de pantalla real** (ver §1).
+- **Dispositivos reales** — todo se mide con Chrome sin interfaz, no en un iPhone o Android de gama baja.
+- **Rendimiento con red real** — las mediciones son en servidor local; con 4G los tiempos serán mayores, sobre todo en la portada por el hero y en `eventos-pasados.html` por Instagram.
+- **Revisión del contenido clínico** — nada de lo que dice el sitio sobre servicios, cuotas o credenciales se verifica contra la realidad de la asociación en esta auditoría.

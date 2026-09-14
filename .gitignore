@@ -29,3 +29,7 @@ build/
 .impeccable/hook.cache.json
 .impeccable/review/
 skills-lock.json
+graphify-out/
+
+# Vault de Obsidian (notas de contexto del agente, no son parte del sitio)
+obsidian-vault/
