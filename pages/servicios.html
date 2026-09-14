@@ -323,7 +323,18 @@
           <div class="kicker">Preguntas frecuentes</div>
           <h2>Antes de agendar</h2>
         </div>
-        <div class="info-card">
+        <div class="faq-search">
+          <label for="faqSearch" class="faq-search-label">Buscar en preguntas frecuentes</label>
+          <div class="faq-search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+            <input type="search" id="faqSearch" placeholder="Ej. costo, en línea, crisis…" autocomplete="off">
+          </div>
+          <p class="faq-search-status" id="faqSearchStatus" aria-live="polite"></p>
+        </div>
+        <div class="info-card" id="faqList">
           <div class="info-row">
             <span class="i-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="1.8">
@@ -393,6 +404,11 @@
                 Agendar terapia no es un canal de urgencias.</p>
             </div>
           </div>
+        </div>
+        <div class="faq-empty" id="faqEmpty" hidden>
+          <p>No encontramos ninguna pregunta que coincida con tu búsqueda.</p>
+          <a data-wa href="https://wa.me/526672115886?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20los%20servicios%20de%20%C3%81guila%20Dorada."
+            class="btn btn-outline" target="_blank" rel="noopener noreferrer">Pregúntanos por WhatsApp</a>
         </div>
       </div>
     </section>
@@ -507,6 +523,32 @@
       mobileNav.classList.remove('open');
       menuBtn.setAttribute('aria-expanded', 'false');
     }));
+
+    // Buscador de preguntas frecuentes: filtra las tarjetas de #faqList por
+    // coincidencia de texto (sin acentos, insensible a mayúsculas) contra la
+    // pregunta y la respuesta. No usa IA ni backend: solo compara texto que
+    // ya está en la página, así que no puede inventar información.
+    const faqSearch = document.getElementById('faqSearch');
+    const faqRows = Array.from(document.querySelectorAll('#faqList .info-row'));
+    const faqEmpty = document.getElementById('faqEmpty');
+    const faqStatus = document.getElementById('faqSearchStatus');
+    const normalize = (str) => str.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    const faqTexts = faqRows.map(row => normalize(row.textContent));
+
+    const filterFaq = () => {
+      const query = normalize(faqSearch.value.trim());
+      let visible = 0;
+      faqRows.forEach((row, i) => {
+        const match = !query || faqTexts[i].includes(query);
+        row.hidden = !match;
+        if (match) visible++;
+      });
+      faqEmpty.hidden = visible !== 0;
+      faqStatus.textContent = query
+        ? `${visible} de ${faqRows.length} preguntas coinciden con "${faqSearch.value.trim()}".`
+        : '';
+    };
+    faqSearch.addEventListener('input', filterFaq);
   </script>
 </body>
 
