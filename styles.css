@@ -15,6 +15,7 @@
   --terracotta-deep: #A85234;
   --line: #E4DBC8;
   --whatsapp-green: #25D366;
+  --notify-red: #E9483F;
   --max: 1180px;
   /* La barra de navegación necesita más aire que el contenido: con 7 enlaces
      (incluido "Próximos eventos") apenas cabía dentro de --max (1180px),
@@ -3199,7 +3200,7 @@ body.lightbox-open {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: var(--terracotta-deep);
+  background: var(--notify-red);
   border: 2px solid var(--paper);
 }
 
