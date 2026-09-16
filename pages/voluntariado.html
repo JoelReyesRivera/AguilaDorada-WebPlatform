@@ -551,7 +551,12 @@
             <ul>
               <li><a data-wa href="https://wa.me/526672115886" target="_blank" rel="noopener noreferrer">WhatsApp
                   institucional</a></li>
-              <li><a href="mailto:aguiladorada.admi@gmail.com">aguiladorada.admi@gmail.com</a></li>
+              <li class="foot-hours">Horario de atención<br>
+                Lunes a viernes: 9:00–13:00 y 15:00–17:00.<br>
+                Sábado: 9:00–14:00.<br>
+                Domingo: cerrado.<br>
+                Las sesiones de terapia siempre son con cita previa.</li>
+              <li style="margin-top:1em;"><a href="mailto:aguiladorada.admi@gmail.com">aguiladorada.admi@gmail.com</a></li>
               <li>Matías Lazcano 2134, int. 11<br>Tierra Blanca, 80030<br>Culiacán Rosales, Sinaloa, México</li>
             </ul>
           </address>
@@ -649,36 +654,43 @@
           {
             id: 'terapia-incluye',
             label: '¿Qué incluye la terapia?',
-            message: 'Atención psicológica <strong>individual</strong>, <strong>de pareja</strong> y <strong>familiar</strong>, presencial o en línea, semanal o quincenal, en un espacio confidencial y sin juicio.',
+            message: 'Atención psicológica <strong>individual</strong>, presencial o en línea, semanal o quincenal, en un espacio confidencial y sin juicio.',
+            quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-diagnostico',
             label: '¿Y el diagnóstico?',
             message: 'Evaluaciones psicológicas, <strong>breves</strong> o <strong>integrales</strong>, para entender mejor lo que estás viviendo y definir la ruta de atención más adecuada. Es un servicio aparte de la terapia.',
+            quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-necesito-diagnostico',
             label: '¿Necesito diagnóstico antes de ir a terapia?',
             message: '<strong>No.</strong> Puedes agendar terapia directamente; el diagnóstico es para cuando buscas específicamente una evaluación psicológica formal.',
+            quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-costo',
             label: '¿Cuánto cuesta?',
             message: 'Entre <strong>$150 y $350 MXN</strong> por sesión. Aplicamos un estudio socioeconómico para ajustar el monto a tu situación; lo revisamos contigo al agendar, sin compromiso.',
+            quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-proceso',
             label: '¿Cómo empiezo?',
             message: '<ol><li><strong>Escríbenos:</strong> nos cuentas brevemente qué buscas.</li><li><strong>Estudio socioeconómico:</strong> definimos juntos tu cuota.</li><li><strong>Primera cita:</strong> presencial o en línea.</li><li><strong>Seguimiento:</strong> sesiones semanales o quincenales, ajustables.</li></ol>',
+            quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-quien-atiende',
             label: '¿Quién me atiende?',
             message: 'La <strong>Lic. Maricela Cázarez</strong>, psicóloga con cédula profesional, encabeza la atención. El resto del equipo brinda orientación psicológica como pasantes en práctica supervisada por ella.',
+            quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-agendar',
             label: 'Quiero agendar mi cita',
+            gold: true,
             message: 'Perfecto. Escríbenos por WhatsApp y coordinamos tu primera cita, o revisa el detalle completo en Servicios.',
             actions: [
               { type: 'wa', label: 'Agendar por WhatsApp', text: 'Hola, me gustaría agendar una sesión de terapia con Águila Dorada.' },
@@ -723,20 +735,24 @@
             id: 'vol-urgente',
             label: '¿Qué áreas necesitan voluntarios ahora?',
             message: 'Apoyan a toda la asociación por igual, así que son la prioridad hoy:<ul><li><strong>Marketing y promoción</strong></li><li><strong>Gestión de eventos</strong></li><li><strong>Ventas y llenado de cupos</strong></li><li><strong>Difusión y contenido</strong></li></ul>',
+            quickAction: 'vol-postular',
           },
           {
             id: 'vol-otras',
             label: '¿Qué otras áreas hay?',
             message: 'Reciben voluntariado de forma continua:<ul><li><strong>Talleres y eventos educativos</strong></li><li><strong>Cultural y artes expresivas</strong></li><li><strong>Asistencial:</strong> jornadas de víveres</li></ul>',
+            quickAction: 'vol-postular',
           },
           {
             id: 'vol-experiencia',
             label: '¿Necesito experiencia previa?',
             message: '<strong>No</strong>, para la mayoría de las áreas no. Cada una tiene su propio nivel de requisitos (algunas piden solo disponibilidad); te orientamos para encontrar dónde encajas mejor.',
+            quickAction: 'vol-postular',
           },
           {
             id: 'vol-postular',
             label: 'Quiero postularme',
+            gold: true,
             message: 'En la página de Voluntariado puedes elegir tu área exacta, cada una con su propio botón de WhatsApp; o escríbenos directo y te orientamos.',
             actions: [
               { type: 'link', label: 'Ver áreas de voluntariado', href: 'voluntariado.html' },
@@ -838,6 +854,16 @@
       },
     ];
 
+    // Índice plano id -> nodo, para resolver los botones de acceso rápido
+    // (quickAction) que se agregan a las respuestas de una misma pestaña.
+    const NODE_INDEX = {};
+    (function indexChatbotNodes(nodes) {
+      nodes.forEach((node) => {
+        NODE_INDEX[node.id] = node;
+        if (node.children) indexChatbotNodes(node.children);
+      });
+    })(TREE);
+
     const chatbotFab = document.getElementById('chatbotFab');
     const chatbotPanel = document.getElementById('chatbotPanel');
     const chatbotBody = document.getElementById('chatbotBody');
@@ -865,7 +891,7 @@
       items.forEach((node) => {
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'chatbot-option-btn' + (node.urgent ? ' is-urgent' : '');
+        btn.className = 'chatbot-option-btn' + (node.urgent ? ' is-urgent' : '') + (node.gold ? ' is-gold' : '');
         btn.textContent = node.label;
         btn.addEventListener('click', () => {
           chatbotPath.push(node);
@@ -896,28 +922,41 @@
       msg.innerHTML = node.message;
       chatbotBody.appendChild(msg);
 
-      if (!node.actions || !node.actions.length) return;
-
-      const cta = document.createElement('div');
-      cta.className = 'chatbot-cta';
-      node.actions.forEach((action) => {
-        const a = document.createElement('a');
-        a.className = 'chatbot-cta-btn' + (action.type === 'wa' ? ' is-primary' : '');
-        a.textContent = action.label;
-        if (action.type === 'wa') {
-          a.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(action.text)}`;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-        } else {
-          a.href = action.href;
-          if (action.external) {
+      if (node.actions && node.actions.length) {
+        const cta = document.createElement('div');
+        cta.className = 'chatbot-cta';
+        node.actions.forEach((action) => {
+          const a = document.createElement('a');
+          a.className = 'chatbot-cta-btn' + (action.type === 'wa' ? ' is-primary' : '');
+          a.textContent = action.label;
+          if (action.type === 'wa') {
+            a.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(action.text)}`;
             a.target = '_blank';
             a.rel = 'noopener noreferrer';
+          } else {
+            a.href = action.href;
+            if (action.external) {
+              a.target = '_blank';
+              a.rel = 'noopener noreferrer';
+            }
           }
-        }
-        cta.appendChild(a);
-      });
-      chatbotBody.appendChild(cta);
+          cta.appendChild(a);
+        });
+        chatbotBody.appendChild(cta);
+      }
+
+      const quickTarget = node.quickAction && NODE_INDEX[node.quickAction];
+      if (quickTarget) {
+        const quick = document.createElement('button');
+        quick.type = 'button';
+        quick.className = 'chatbot-option-btn' + (quickTarget.gold ? ' is-gold' : '');
+        quick.textContent = quickTarget.label;
+        quick.addEventListener('click', () => {
+          chatbotPath.push(quickTarget);
+          renderChatbot();
+        });
+        chatbotBody.appendChild(quick);
+      }
     }
 
     function chatbotGoBack() {

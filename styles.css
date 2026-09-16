@@ -3427,6 +3427,11 @@ body.lightbox-open {
   color: var(--terracotta-deep);
 }
 
+.chatbot-option-btn.is-gold {
+  border-color: var(--gold-deep);
+  color: var(--gold-ink);
+}
+
 .chatbot-back {
   align-self: flex-start;
   font: inherit;
