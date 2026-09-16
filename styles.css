@@ -3208,6 +3208,111 @@ body.lightbox-open {
 }
 
 /* ===================================================================
+   Banner emergente de convocatoria (index.html, se abre solo)
+   Mismo patrón visual y de accesibilidad que el visor de flyers de
+   arriba, pero como bloque independiente porque es una promoción, no
+   un visor de imagen bajo demanda.
+   =================================================================== */
+body.promo-open {
+  overflow: hidden;
+}
+
+.promo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 320;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(20, 14, 11, .82);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.promo-modal[hidden] {
+  display: none;
+}
+
+.promo-modal.is-open {
+  opacity: 1;
+}
+
+.promo-modal-backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.promo-modal-dialog {
+  position: relative;
+  display: inline-flex;
+  max-width: 92vw;
+  max-height: 90vh;
+  transform: scale(.97);
+  transition: transform .2s ease;
+}
+
+.promo-modal.is-open .promo-modal-dialog {
+  transform: scale(1);
+}
+
+.promo-modal-link {
+  display: block;
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, .35);
+}
+
+.promo-modal-link img {
+  display: block;
+  max-width: 92vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  background: var(--paper);
+}
+
+.promo-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(20, 14, 11, .6);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+
+.promo-modal-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.promo-modal-close:hover {
+  background: rgba(20, 14, 11, .85);
+}
+
+.promo-modal-close:focus-visible {
+  outline: 3px solid var(--gold-deep);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .promo-modal,
+  .promo-modal-dialog {
+    transition: none;
+  }
+}
+
+/* ===================================================================
    Chatbot flotante (árbol de decisión, sin backend ni IA)
    -------------------------------------------------------------------
    Burbuja estilo WhatsApp que abre un panel con un menú de temas
@@ -3496,6 +3601,11 @@ body.lightbox-open {
 .chatbot-option-btn.is-urgent {
   border-color: var(--terracotta-deep);
   color: var(--terracotta-deep);
+}
+
+.chatbot-option-btn.is-gold {
+  border-color: var(--gold-deep);
+  color: var(--gold-ink);
 }
 
 .chatbot-back {
