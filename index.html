@@ -82,6 +82,32 @@
 
   <a href="#main-content" class="skip-link">Saltar al contenido</a>
 
+  <!-- Banner emergente de convocatoria de voluntariado. Se muestra una vez
+       al entrar y, al cerrarse, no vuelve a aparecer durante 3 días
+       (guardado en localStorage). Solo vive en index.html: es la puerta
+       de entrada del sitio, no tiene sentido repetirlo en el resto de
+       páginas. Toda la imagen es un enlace directo a WhatsApp con un
+       mensaje pre-redactado (mismo criterio de WHATSAPP_NUMBER que el
+       resto del sitio). Para cambiar la imagen, reemplaza
+       assets/images/voluntariado-banner.png (o cambia la ruta abajo) y
+       actualiza el "alt" para que siga describiendo el contenido real. -->
+  <div class="promo-modal" id="promoModal" hidden>
+    <div class="promo-modal-backdrop" data-promo-close></div>
+    <div class="promo-modal-dialog" role="dialog" aria-modal="true" aria-label="Convocatoria de voluntariado">
+      <button type="button" class="promo-modal-close" data-promo-close aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+      <a data-wa href="https://wa.me/526672115886?text=Hola%2C%20quiero%20sumarme%20como%20voluntario%20a%20%C3%81guila%20Dorada.%20Vi%20el%20anuncio%20de%20voluntariado"
+        target="_blank" rel="noopener noreferrer" class="promo-modal-link"
+        aria-label="Escribir por WhatsApp para sumarme como voluntario/a">
+        <img src="assets/images/voluntariado-banner.png" width="1280" height="1600" decoding="async"
+          alt="Convocatoria abierta de voluntariado: necesitamos más manos para seguir creciendo. Buscamos personas para: 1) Comunidad y crecimiento de grupos, invitando a nuevas personas a nuestros grupos y talleres y acompañándolas en su inscripción. 2) Apoyo al departamento educativo con la logística del día a día en oficina, 2 a 3 horas diarias. 3) Atención y recepción en oficina, por teléfono y WhatsApp, 3 a 4 horas diarias. En las áreas 1 y 3 se presta un celular de Águila Dorada. ¿Quieres crecer con nosotros? Escríbenos y te decimos cómo empezar.">
+      </a>
+    </div>
+  </div>
+
   <aside class="crisis-bar" aria-label="Atención en crisis">
     <span>¿Estás en crisis o necesitas hablar con alguien ahora? Llama a la <strong>Línea de la Vida · 800 911
         2000</strong> — 24/7</span>
@@ -644,6 +670,73 @@
     document.querySelectorAll('[data-wa]').forEach((link) => {
       link.href = link.href.replace(/wa\.me\/\d+/, `wa.me/${WHATSAPP_NUMBER}`);
     });
+
+    // Banner emergente de convocatoria de voluntariado: se muestra una
+    // sola vez y, al cerrarse, queda oculto 3 días (guardado en
+    // localStorage). Si el navegador bloquea localStorage (modo privado,
+    // por ejemplo), simplemente se muestra cada vez sin romper nada.
+    (function initPromoModal() {
+      const PROMO_STORAGE_KEY = 'promoVoluntariadoHiddenUntil';
+      const PROMO_SNOOZE_DAYS = 3;
+      const promoModal = document.getElementById('promoModal');
+      if (!promoModal) return;
+
+      let hiddenUntil = 0;
+      try {
+        hiddenUntil = Number(localStorage.getItem(PROMO_STORAGE_KEY)) || 0;
+      } catch { /* localStorage no disponible: se muestra igual */ }
+      if (Date.now() < hiddenUntil) return;
+
+      const promoDialog = promoModal.querySelector('.promo-modal-dialog');
+      const promoClose = promoModal.querySelector('.promo-modal-close');
+      const promoLink = promoModal.querySelector('.promo-modal-link');
+      let promoLastFocused = null;
+
+      function closePromoModal() {
+        promoModal.classList.remove('is-open');
+        document.body.classList.remove('promo-open');
+        document.removeEventListener('keydown', onPromoKeydown);
+        const finish = () => { promoModal.hidden = true; };
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          finish();
+        } else {
+          promoModal.addEventListener('transitionend', finish, { once: true });
+        }
+        try {
+          localStorage.setItem(PROMO_STORAGE_KEY, String(Date.now() + PROMO_SNOOZE_DAYS * 86400000));
+        } catch { /* sin almacenamiento persistente: volverá a aparecer */ }
+        promoLastFocused?.focus();
+      }
+
+      function onPromoKeydown(e) {
+        if (e.key === 'Escape') {
+          closePromoModal();
+        } else if (e.key === 'Tab') {
+          // Solo dos elementos enfocables en el diálogo: el foco no se
+          // escapa y cicla entre el enlace de la imagen y el botón cerrar.
+          const focusables = [promoLink, promoClose];
+          const currentIndex = focusables.indexOf(document.activeElement);
+          e.preventDefault();
+          const next = e.shiftKey
+            ? focusables[(currentIndex - 1 + focusables.length) % focusables.length]
+            : focusables[(currentIndex + 1) % focusables.length];
+          next.focus();
+        }
+      }
+
+      promoModal.querySelectorAll('[data-promo-close]').forEach((el) => {
+        el.addEventListener('click', closePromoModal);
+      });
+
+      window.requestAnimationFrame(() => {
+        promoLastFocused = document.activeElement;
+        promoModal.hidden = false;
+        void promoModal.offsetHeight;
+        promoModal.classList.add('is-open');
+        promoClose.focus();
+        document.addEventListener('keydown', onPromoKeydown);
+      });
+    })();
 
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
