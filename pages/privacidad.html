@@ -456,7 +456,12 @@
             <ul>
               <li><a data-wa href="https://wa.me/526672115886" target="_blank" rel="noopener noreferrer">WhatsApp
                   institucional</a></li>
-              <li><a href="mailto:aguiladorada.admi@gmail.com">aguiladorada.admi@gmail.com</a></li>
+              <li class="foot-hours">Horario de atención<br>
+                Lunes a viernes: 9:00–13:00 y 15:00–17:00.<br>
+                Sábado: 9:00–14:00.<br>
+                Domingo: cerrado.<br>
+                Las sesiones de terapia siempre son con cita previa.</li>
+              <li style="margin-top:1em;"><a href="mailto:aguiladorada.admi@gmail.com">aguiladorada.admi@gmail.com</a></li>
               <li>Matías Lazcano 2134, int. 11<br>Tierra Blanca, 80030<br>Culiacán Rosales, Sinaloa, México</li>
             </ul>
           </address>
@@ -472,6 +477,43 @@
       </div>
     </div>
   </footer>
+
+  <!-- Chatbot flotante: árbol de decisión sin backend ni IA (ver TREE más
+       abajo). Guía a Terapia/Eventos/Voluntariado/Contacto/Nosotros/
+       Donativos/Crisis y termina siempre en un enlace real a WhatsApp,
+       tel: o una página del sitio. -->
+  <div class="chatbot-widget">
+    <div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Chat de preguntas frecuentes"
+      hidden>
+      <div class="chatbot-head">
+        <div class="chatbot-avatar">
+          <img src="../assets/images/logo.png" alt="" width="40" height="40">
+          <span class="chatbot-online-dot" aria-hidden="true"></span>
+        </div>
+        <div class="chatbot-head-text">
+          <div class="chatbot-name">Águila Dorada</div>
+          <div class="chatbot-tag">Asistente virtual</div>
+        </div>
+        <button type="button" class="chatbot-close-btn" id="chatbotCloseBtn" aria-label="Cerrar chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="chatbot-body" id="chatbotBody" role="log" aria-live="polite"></div>
+    </div>
+    <button type="button" class="chatbot-fab has-badge" id="chatbotFab" aria-haspopup="dialog" aria-expanded="false"
+      aria-controls="chatbotPanel" aria-label="Abrir chat de preguntas frecuentes">
+      <span class="chatbot-fab-dot" aria-hidden="true"></span>
+      <svg class="ic-chat" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .9.9-2.9-.2-.3A8 8 0 1 1 12 20Zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1s-.6.7-.7.9-.3.2-.5.1a6.3 6.3 0 0 1-3-2.6c-.2-.4.2-.4.5-.7.2-.2.2-.4 0-.6l-.7-1.7c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3s1 2.6 1.1 2.8c.1.2 1.8 2.8 4.5 3.8 2.2.8 2.2.5 2.6.5.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.3-.2-.5-.3Z" />
+      </svg>
+      <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 6l12 12M18 6 6 18" />
+      </svg>
+    </button>
+  </div>
 
   <script>
     // Fuente única del número de WhatsApp institucional (mismo criterio que index.html).
@@ -497,6 +539,385 @@
         menuBtn.focus();
       }
     });
+
+
+    // Chatbot flotante: árbol de decisión por reglas, sin IA ni backend.
+    // Todo el contenido vive en TREE (dos niveles: tema -> sub-pregunta).
+    // La mayoría de las hojas son solo informativas (sin WhatsApp) para
+    // resolver la duda ahí mismo; solo las hojas de "acción" (agendar,
+    // postularme, escribir, donar, crisis) ofrecen WhatsApp/tel/enlace.
+    // Copia de la misma estructura de index.html, con rutas relativas
+    // ajustadas al vivir dentro de pages/.
+    const EVENTOS_HREF = '../index.html#eventos';
+    const DONAR_HREF = '../index.html#donar';
+    const TREE = [
+      {
+        id: 'terapia',
+        label: 'Terapia y diagnóstico',
+        children: [
+          {
+            id: 'terapia-incluye',
+            label: '¿Qué incluye la terapia?',
+            message: 'Atención psicológica <strong>individual</strong>, presencial o en línea, semanal o quincenal, en un espacio confidencial y sin juicio.',
+            quickAction: 'terapia-agendar',
+          },
+          {
+            id: 'terapia-diagnostico',
+            label: '¿Cómo es el proceso de diagnóstico?',
+            message: 'Evaluaciones psicológicas, <strong>breves</strong> o <strong>integrales</strong>, para entender mejor lo que estás viviendo y definir la ruta de atención más adecuada. Es un servicio aparte de la terapia.',
+            quickAction: 'terapia-agendar',
+          },
+          {
+            id: 'terapia-necesito-diagnostico',
+            label: '¿Necesito diagnóstico antes de ir a terapia?',
+            message: '<strong>No.</strong> Puedes agendar terapia directamente; el diagnóstico es para cuando buscas específicamente una evaluación psicológica formal.',
+            quickAction: 'terapia-agendar',
+          },
+          {
+            id: 'terapia-costo',
+            label: '¿Cuánto cuesta?',
+            message: 'Entre <strong>$150 y $350 MXN</strong> por sesión. Aplicamos un estudio socioeconómico para ajustar el monto a tu situación; lo revisamos contigo al agendar, sin compromiso.',
+            quickAction: 'terapia-agendar',
+          },
+          {
+            id: 'terapia-proceso',
+            label: '¿Cómo empiezo?',
+            message: '<ol><li><strong>Escríbenos:</strong> nos cuentas brevemente qué buscas.</li><li><strong>Estudio socioeconómico:</strong> definimos juntos tu cuota.</li><li><strong>Primera cita:</strong> presencial o en línea.</li><li><strong>Seguimiento:</strong> sesiones semanales o quincenales, ajustables.</li></ol>',
+            quickAction: 'terapia-agendar',
+          },
+          {
+            id: 'terapia-quien-atiende',
+            label: '¿Quién me atiende?',
+            message: 'La <strong>M.C. Maricela Cázarez</strong>, psicóloga con cédula profesional, encabeza la atención. El resto del equipo brinda orientación psicológica como pasantes en práctica supervisada por ella.',
+            quickAction: 'terapia-agendar',
+          },
+          {
+            id: 'terapia-agendar',
+            label: 'Quiero agendar mi cita',
+            gold: true,
+            message: 'Perfecto. Escríbenos por WhatsApp y coordinamos tu primera cita, o revisa el detalle completo en Servicios.',
+            actions: [
+              { type: 'wa', label: 'Agendar por WhatsApp', text: 'Hola, me gustaría agendar una sesión de terapia con Águila Dorada.' },
+              { type: 'link', label: 'Ver la página de Servicios', href: 'servicios.html' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'eventos',
+        label: 'Eventos y comunidad',
+        children: [
+          {
+            id: 'eventos-tipos',
+            label: '¿Qué tipo de eventos hacen?',
+            message: '<ul><li><strong>Comunidad:</strong> reuniones quincenales de escucha y acompañamiento.</li><li><strong>Educativo:</strong> talleres y pláticas de bienestar emocional.</li><li><strong>Cultural:</strong> encuentros de arte, música y lectura.</li><li><strong>Asistencial:</strong> jornadas de apoyo con víveres.</li></ul>',
+          },
+          {
+            id: 'eventos-costo',
+            label: '¿Tienen costo?',
+            message: 'La mayoría son <strong>gratuitos o de aportación mínima</strong>. Algunas conferencias tienen una cuota de recuperación, indicada en cada convocatoria.',
+          },
+          {
+            id: 'eventos-ver-proximos',
+            label: 'Ver próximos eventos',
+            message: 'Aquí tienes las próximas fechas confirmadas.',
+            actions: [{ type: 'link', label: 'Ver próximos eventos', href: EVENTOS_HREF }],
+          },
+          {
+            id: 'eventos-ver-pasados',
+            label: 'Ver eventos pasados',
+            message: 'Puedes ver la memoria de talleres y conferencias anteriores, con evidencia de cada actividad.',
+            actions: [{ type: 'link', label: 'Ver eventos pasados', href: 'eventos-pasados.html' }],
+          },
+        ],
+      },
+      {
+        id: 'voluntariado',
+        label: 'Voluntariado',
+        children: [
+          {
+            id: 'vol-urgente',
+            label: '¿Qué áreas necesitan voluntarios ahora?',
+            message: 'Apoyan a toda la asociación por igual, así que son la prioridad hoy:<ul><li><strong>Marketing y promoción</strong></li><li><strong>Gestión de eventos</strong></li><li><strong>Ventas y llenado de cupos</strong></li><li><strong>Difusión y contenido</strong></li></ul>',
+            quickAction: 'vol-postular',
+          },
+          {
+            id: 'vol-otras',
+            label: '¿Qué otras áreas hay?',
+            message: 'Reciben voluntariado de forma continua:<ul><li><strong>Talleres y eventos educativos</strong></li><li><strong>Cultural y artes expresivas</strong></li><li><strong>Asistencial:</strong> jornadas de víveres</li></ul>',
+            quickAction: 'vol-postular',
+          },
+          {
+            id: 'vol-experiencia',
+            label: '¿Necesito experiencia previa?',
+            message: '<strong>No</strong>, para la mayoría de las áreas no. Cada una tiene su propio nivel de requisitos (algunas piden solo disponibilidad); te orientamos para encontrar dónde encajas mejor.',
+            quickAction: 'vol-postular',
+          },
+          {
+            id: 'vol-postular',
+            label: 'Quiero postularme',
+            gold: true,
+            message: 'En la página de Voluntariado puedes elegir tu área exacta, cada una con su propio botón de WhatsApp; o escríbenos directo y te orientamos.',
+            actions: [
+              { type: 'link', label: 'Ver áreas de voluntariado', href: 'voluntariado.html' },
+              { type: 'wa', label: 'Escribir por WhatsApp', text: 'Hola, me interesa ser voluntario/a en Águila Dorada.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'contacto',
+        label: 'Contacto y horarios',
+        children: [
+          {
+            id: 'contacto-horario',
+            label: 'Horario de atención',
+            message: '<strong>Lunes a viernes:</strong> 9:00–13:00 y 15:00–17:00.<br><strong>Sábado:</strong> 9:00–14:00.<br><strong>Domingo:</strong> cerrado.<br>Las sesiones de terapia siempre son con cita previa.',
+          },
+          {
+            id: 'contacto-direccion',
+            label: 'Dirección',
+            message: 'Matías Lazcano 2134, interior 11, Col. Tierra Blanca, C.P. 80030, Culiacán Rosales, Sinaloa.',
+            actions: [{ type: 'link', label: 'Ver en Google Maps', href: 'https://www.google.com/maps/search/?api=1&query=Mat%C3%ADas%20Lazcano%202134%2C%20Tierra%20Blanca%2C%2080030%20Culiac%C3%A1n%20Rosales%2C%20Sinaloa', external: true }],
+          },
+          {
+            id: 'contacto-correo',
+            label: 'Correo electrónico',
+            message: '<strong>aguiladorada.admi@gmail.com</strong> para contacto general.<br><strong>aguiladorada.psic@gmail.com</strong> específicamente para terapia y diagnóstico.',
+          },
+          {
+            id: 'contacto-ver',
+            label: 'Ver todas las formas de contacto',
+            message: 'En la página de Contacto tienes el formulario, WhatsApp, correo, mapa y horarios en un solo lugar.',
+            actions: [
+              { type: 'link', label: 'Ver página de Contacto', href: 'contacto.html' },
+              { type: 'wa', label: 'Escribir por WhatsApp', text: 'Hola, tengo una pregunta para Águila Dorada.' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'nosotros',
+        label: 'Sobre Águila Dorada',
+        children: [
+          {
+            id: 'nosotros-que-es',
+            label: '¿Quiénes son?',
+            message: 'Águila Dorada A.C. es una <strong>asociación civil</strong> (actualmente en proceso de constitución) dedicada a la salud mental y el bienestar emocional en Culiacán y sus alrededores.',
+          },
+          {
+            id: 'nosotros-mision',
+            label: 'Nuestra misión',
+            message: '<em>"Acompañamos, fortalecemos y transformamos vidas."</em><br>Salud mental accesible para Culiacán y su comunidad.',
+          },
+          {
+            id: 'nosotros-equipo',
+            label: '¿Quién forma el equipo?',
+            message: 'Un equipo de <strong>7 fundadores</strong> dirige la asociación, más un equipo de psicología encabezado por la <strong>M.C. Maricela Cázarez</strong>, psicóloga con cédula profesional.',
+          },
+          {
+            id: 'nosotros-ver',
+            label: 'Ver página de Nosotros',
+            message: 'Conoce a todo el equipo, con fotos y el rol de cada quien.',
+            actions: [{ type: 'link', label: 'Ver página de Nosotros', href: 'nosotros.html' }],
+          },
+        ],
+      },
+      {
+        id: 'donativos',
+        label: 'Donativos',
+        children: [
+          {
+            id: 'donar-dinero',
+            label: '¿Cómo puedo donar dinero?',
+            message: 'Por <strong>transferencia bancaria</strong>. Los datos completos (banco, CLABE y concepto) y el botón para compartir tu comprobante están en la sección de donativos de la página de inicio.',
+            actions: [{ type: 'link', label: 'Ver datos para donar', href: DONAR_HREF }],
+          },
+          {
+            id: 'donar-viveres',
+            label: '¿Aceptan víveres?',
+            message: 'Sí: sopa, arroz, frijol, lenteja, aceite, atún, enlatados y más.<br><strong>Requisito:</strong> productos cerrados, en buen estado, con más de 6 meses de caducidad (sin vidrio).',
+            actions: [{ type: 'link', label: 'Ver dónde llevarlos', href: DONAR_HREF }],
+          },
+          {
+            id: 'donar-tiempo',
+            label: 'Quiero donar mi tiempo',
+            message: 'También puedes apoyar como voluntario/a; no necesitas experiencia previa.',
+            actions: [{ type: 'link', label: 'Ver voluntariado', href: 'voluntariado.html' }],
+          },
+        ],
+      },
+      {
+        id: 'crisis',
+        label: 'Estoy en crisis ahora',
+        urgent: true,
+        message: 'Si estás en crisis ahora, llama de inmediato a la <strong>Línea de la Vida: 800 911 2000</strong>, gratuita y disponible 24/7. Agendar terapia no es un canal de urgencias.',
+        actions: [
+          { type: 'tel', label: 'Llamar ahora', href: 'tel:8009112000' },
+        ],
+      },
+    ];
+
+    // Índice plano id -> nodo, para resolver los botones de acceso rápido
+    // (quickAction) que se agregan a las respuestas de una misma pestaña.
+    const NODE_INDEX = {};
+    (function indexChatbotNodes(nodes) {
+      nodes.forEach((node) => {
+        NODE_INDEX[node.id] = node;
+        if (node.children) indexChatbotNodes(node.children);
+      });
+    })(TREE);
+
+    const chatbotFab = document.getElementById('chatbotFab');
+    const chatbotPanel = document.getElementById('chatbotPanel');
+    const chatbotBody = document.getElementById('chatbotBody');
+    const chatbotCloseBtn = document.getElementById('chatbotCloseBtn');
+    let chatbotOpen = false;
+    let chatbotPath = []; // pila de nodos desde la raíz hasta la pantalla actual
+
+    function renderChatbotOptions(items, isRoot) {
+      if (isRoot) {
+        const greeting = document.createElement('div');
+        greeting.className = 'chatbot-msg';
+        greeting.textContent = 'Hola 👋 Soy el asistente virtual de Águila Dorada. ¿Sobre qué te gustaría saber más?';
+        chatbotBody.appendChild(greeting);
+      } else {
+        const back = document.createElement('button');
+        back.type = 'button';
+        back.className = 'chatbot-back';
+        back.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>Volver';
+        back.addEventListener('click', chatbotGoBack);
+        chatbotBody.appendChild(back);
+      }
+
+      const options = document.createElement('div');
+      options.className = 'chatbot-options';
+      items.forEach((node) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'chatbot-option-btn' + (node.urgent ? ' is-urgent' : '') + (node.gold ? ' is-gold' : '');
+        btn.textContent = node.label;
+        btn.addEventListener('click', () => {
+          chatbotPath.push(node);
+          renderChatbot();
+        });
+        options.appendChild(btn);
+      });
+      chatbotBody.appendChild(options);
+
+      if (isRoot) {
+        const footnote = document.createElement('p');
+        footnote.className = 'chatbot-footnote';
+        footnote.innerHTML = `¿Prefieres escribirnos directo? <a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener noreferrer">Ir a WhatsApp</a>`;
+        chatbotBody.appendChild(footnote);
+      }
+    }
+
+    function renderChatbotLeaf(node) {
+      const back = document.createElement('button');
+      back.type = 'button';
+      back.className = 'chatbot-back';
+      back.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>Volver';
+      back.addEventListener('click', chatbotGoBack);
+      chatbotBody.appendChild(back);
+
+      const msg = document.createElement('div');
+      msg.className = 'chatbot-msg' + (node.urgent ? ' is-urgent' : '');
+      msg.innerHTML = node.message;
+      chatbotBody.appendChild(msg);
+
+      if (node.actions && node.actions.length) {
+        const cta = document.createElement('div');
+        cta.className = 'chatbot-cta';
+        node.actions.forEach((action) => {
+          const a = document.createElement('a');
+          a.className = 'chatbot-cta-btn' + (action.type === 'wa' ? ' is-primary' : '');
+          a.textContent = action.label;
+          if (action.type === 'wa') {
+            a.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(action.text)}`;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+          } else {
+            a.href = action.href;
+            if (action.external) {
+              a.target = '_blank';
+              a.rel = 'noopener noreferrer';
+            }
+          }
+          cta.appendChild(a);
+        });
+        chatbotBody.appendChild(cta);
+      }
+
+      const quickTarget = node.quickAction && NODE_INDEX[node.quickAction];
+      if (quickTarget) {
+        const quick = document.createElement('button');
+        quick.type = 'button';
+        quick.className = 'chatbot-option-btn' + (quickTarget.gold ? ' is-gold' : '');
+        quick.textContent = quickTarget.label;
+        quick.addEventListener('click', () => {
+          chatbotPath.push(quickTarget);
+          renderChatbot();
+        });
+        chatbotBody.appendChild(quick);
+      }
+    }
+
+    function chatbotGoBack() {
+      chatbotPath.pop();
+      renderChatbot();
+    }
+
+    function renderChatbot() {
+      chatbotBody.innerHTML = '';
+      const current = chatbotPath[chatbotPath.length - 1];
+      if (!current) {
+        renderChatbotOptions(TREE, true);
+      } else if (current.children) {
+        renderChatbotOptions(current.children, false);
+      } else {
+        renderChatbotLeaf(current);
+      }
+      chatbotBody.scrollTop = 0;
+    }
+
+    function onChatbotKeydown(e) {
+      if (e.key === 'Escape') closeChatbot();
+    }
+
+    function openChatbot() {
+      if (chatbotOpen) return;
+      chatbotOpen = true;
+      chatbotPath = [];
+      renderChatbot();
+      chatbotPanel.hidden = false;
+      void chatbotPanel.offsetHeight;
+      chatbotPanel.classList.add('is-open');
+      chatbotFab.setAttribute('aria-expanded', 'true');
+      chatbotFab.classList.remove('has-badge');
+      chatbotFab.classList.add('is-open');
+      document.addEventListener('keydown', onChatbotKeydown);
+      chatbotCloseBtn.focus();
+    }
+
+    function closeChatbot() {
+      if (!chatbotOpen) return;
+      chatbotOpen = false;
+      chatbotPanel.classList.remove('is-open');
+      chatbotFab.setAttribute('aria-expanded', 'false');
+      chatbotFab.classList.remove('is-open');
+      document.removeEventListener('keydown', onChatbotKeydown);
+      const finish = () => { chatbotPanel.hidden = true; };
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        finish();
+      } else {
+        chatbotPanel.addEventListener('transitionend', finish, { once: true });
+      }
+      chatbotFab.focus();
+    }
+
+    chatbotFab.addEventListener('click', () => (chatbotOpen ? closeChatbot() : openChatbot()));
+    chatbotCloseBtn.addEventListener('click', closeChatbot);
   </script>
 </body>
 
