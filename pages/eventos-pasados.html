@@ -132,6 +132,7 @@
       <nav class="links" aria-label="Principal">
         <a href="../index.html#main-content">Inicio</a>
         <a href="servicios.html">Servicios</a>
+        <a href="programas-comunitarios.html">Comunidad</a>
         <a href="../index.html#eventos">Próximos eventos</a>
         <a href="eventos-pasados.html" aria-current="page">Eventos pasados</a>
         <a href="nosotros.html">Nosotros</a>
@@ -152,6 +153,7 @@
     <nav class="mobile-nav" id="mobileNav" aria-label="Menú móvil">
       <a href="../index.html#main-content">Inicio</a>
       <a href="servicios.html">Servicios</a>
+      <a href="programas-comunitarios.html">Comunidad</a>
       <a href="../index.html#eventos">Próximos eventos</a>
       <a href="eventos-pasados.html" aria-current="page">Eventos pasados</a>
       <a href="nosotros.html">Nosotros</a>
@@ -167,8 +169,13 @@
         <div class="ph-main">
           <div class="kicker">Nuestra memoria comunitaria</div>
           <h1>Eventos que ya vivimos juntos</h1>
-          <p>Cada conferencia, taller y jornada queda registrada en nuestro Instagram. Aquí reunimos esas publicaciones
-            como evidencia del trabajo que Águila Dorada realiza con y para la comunidad de Culiacán.</p>
+          <p>Cada conferencia, taller y jornada queda registrada en nuestro Instagram. Aquí reunimos las
+            publicaciones más recientes como evidencia del trabajo que Águila Dorada realiza con y para la comunidad
+            de Culiacán.</p>
+          <div class="growth-stat">
+            <span class="growth-stat-num">25+</span>
+            <span class="growth-stat-label">eventos realizados</span>
+          </div>
         </div>
 
         <aside class="ph-aside" aria-label="Sobre este archivo">
@@ -460,6 +467,7 @@
             <li><a href="../index.html#main-content">Inicio</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="programas-comunitarios.html">Comunidad</a></li>
             <li><a href="../index.html#eventos">Próximos eventos</a></li>
             <li><a href="eventos-pasados.html" aria-current="page">Eventos pasados</a></li>
             <li><a href="voluntariado.html">Voluntariado</a></li>
@@ -474,10 +482,10 @@
           </ul>
           <h3 style="margin-top:20px;">Actividades comunitarias</h3>
           <ul>
-            <li><a href="../index.html#eventos">Reuniones de comunidad quincenales</a></li>
-            <li><a href="../index.html#eventos">Educativos</a></li>
-            <li><a href="../index.html#eventos">Culturales</a></li>
-            <li><a href="../index.html#eventos">Asistenciales</a></li>
+            <li><a href="programas-comunitarios.html#comunidad">Reuniones de comunidad quincenales</a></li>
+            <li><a href="programas-comunitarios.html#educativo">Educativos</a></li>
+            <li><a href="programas-comunitarios.html#cultural">Culturales</a></li>
+            <li><a href="programas-comunitarios.html#asistencial">Asistenciales</a></li>
           </ul>
         </div>
         <div class="foot-col" id="contacto">
@@ -589,13 +597,13 @@
           {
             id: 'terapia-incluye',
             label: '¿Qué incluye la terapia?',
-            message: 'Atención psicológica <strong>individual</strong>, presencial o en línea, semanal o quincenal, en un espacio confidencial y sin juicio.',
+            message: 'Atención psicológica <strong>individual</strong>, presencial o en línea, en un espacio confidencial y sin juicio.',
             quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-diagnostico',
             label: '¿Cómo es el proceso de diagnóstico?',
-            message: 'Evaluaciones psicológicas, <strong>breves</strong> o <strong>integrales</strong>, para entender mejor lo que estás viviendo y definir la ruta de atención más adecuada. Es un servicio aparte de la terapia.',
+            message: 'Nuestro equipo de psicología clínica realiza <strong>entrevistas</strong> y <strong>pruebas especializadas</strong> para evaluar tu estado de salud mental, entregándote un diagnóstico preciso y un plan de tratamiento a tu medida. Es un servicio aparte de la terapia.',
             quickAction: 'terapia-agendar',
           },
           {
@@ -607,13 +615,13 @@
           {
             id: 'terapia-costo',
             label: '¿Cuánto cuesta?',
-            message: 'Entre <strong>$150 y $350 MXN</strong> por sesión. Aplicamos un estudio socioeconómico para ajustar el monto a tu situación; lo revisamos contigo al agendar, sin compromiso.',
+            message: 'Entre <strong>$150 y $350 MXN</strong> por sesión. Aplicamos un estudio socioeconómico para definir un monto justo a pagar por el servicio; lo hacemos en tu primera consulta, no al agendar.',
             quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-proceso',
             label: '¿Cómo empiezo?',
-            message: '<ol><li><strong>Escríbenos:</strong> nos cuentas brevemente qué buscas.</li><li><strong>Estudio socioeconómico:</strong> definimos juntos tu cuota.</li><li><strong>Primera cita:</strong> presencial o en línea.</li><li><strong>Seguimiento:</strong> sesiones semanales o quincenales, ajustables.</li></ol>',
+            message: '<ol><li><strong>Escríbenos:</strong> nos cuentas brevemente qué buscas.</li><li><strong>Primera cita:</strong> presencial, o en línea si no puedes acceder a nuestras oficinas o eres foráneo/a; ahí hacemos el estudio socioeconómico y definimos tu cuota.</li><li><strong>Seguimiento:</strong> una sesión cada 15 días; en caso de ser necesario, la frecuencia puede modificarse.</li></ol>',
             quickAction: 'terapia-agendar',
           },
           {
@@ -646,7 +654,7 @@
           {
             id: 'eventos-costo',
             label: '¿Tienen costo?',
-            message: 'La mayoría son <strong>gratuitos o de aportación mínima</strong>. Algunas conferencias tienen una cuota de recuperación, indicada en cada convocatoria.',
+            message: 'La mayoría son <strong>de costo mínimo accesible</strong>. Algunas conferencias tienen una cuota de recuperación, indicada en cada convocatoria.',
           },
           {
             id: 'eventos-ver-proximos',
