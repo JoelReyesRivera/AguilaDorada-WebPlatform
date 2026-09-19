@@ -152,6 +152,12 @@ header {
   position: sticky;
   top: 0;
   z-index: 50;
+  box-shadow: 0 0 0 rgba(43, 27, 20, 0);
+  transition: box-shadow .25s ease;
+}
+
+header.is-scrolled {
+  box-shadow: 0 6px 20px rgba(43, 27, 20, .1);
 }
 
 .nav {
@@ -173,6 +179,21 @@ header {
   width: 44px;
   height: 44px;
   flex-shrink: 0;
+  transform: scale(1);
+  transform-origin: left center;
+  transition: transform .25s ease;
+}
+
+header.is-scrolled .brand-mark {
+  transform: scale(.82);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  header,
+  .brand-mark {
+    transition: none;
+  }
 }
 
 .brand-text .name {
@@ -554,6 +575,7 @@ nav.links a:hover {
 .tl-stat b {
   font-size: 17px;
   color: var(--brown);
+  font-variant-numeric: tabular-nums;
 }
 
 .tl-stat small {
@@ -1166,11 +1188,27 @@ section:not(.hero):not(.bitacora) {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform .25s cubic-bezier(.2, .7, .2, 1);
+}
+
+.mission-item:hover .icon,
+.mission-item:focus-within .icon {
+  transform: scale(1.12) rotate(-6deg);
 }
 
 .mission-item .icon svg {
   width: 20px;
   height: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mission-item .icon,
+  .mission-item:hover .icon,
+  .mission-item:focus-within .icon {
+    transition: none;
+    transform: none;
+  }
 }
 
 .mission-item h3 {
@@ -1813,6 +1851,7 @@ footer {
   color: var(--gold-deep);
   line-height: 1;
   flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
 }
 
 .growth-stat-label {
@@ -2075,25 +2114,27 @@ footer {
   border-color: var(--cream);
 }
 
-/* Entrada: una revelación escalonada, respeta reduce-motion */
-.js .tm-card[data-reveal] {
+/* Entrada: una revelación escalonada, respeta reduce-motion.
+   Selector genérico por atributo: cualquier elemento con [data-reveal]
+   en cualquier página comparte este mismo tratamiento de aparición. */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(16px);
 }
 
-.js .tm-card[data-reveal].is-in {
+.js [data-reveal].is-in {
   opacity: 1;
   transform: none;
   transition: opacity .5s ease, transform .55s cubic-bezier(.2, .7, .2, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .js .tm-card[data-reveal] {
+  .js [data-reveal] {
     opacity: 1;
     transform: none;
   }
 
-  .js .tm-card[data-reveal].is-in {
+  .js [data-reveal].is-in {
     transition: none;
   }
 
