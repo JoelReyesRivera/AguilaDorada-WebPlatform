@@ -21,7 +21,7 @@
      (incluido "Próximos eventos") apenas cabía dentro de --max (1180px),
      al punto de partirse a dos líneas por redondeo de subpíxel en algunos
      navegadores aunque la ventana fuera mucho más ancha. */
-  --nav-max: 1300px;
+  --nav-max: 1460px;
 }
 
 * {
@@ -1565,14 +1565,18 @@ footer {
   gap: 10px;
 }
 
-/* La barra de navegación completa (marca + 7 enlaces + botón) deja de caber
+/* La barra de navegación completa (marca + 8 enlaces + botón) deja de caber
    antes de 980px: se colapsa al menú de hamburguesa un poco antes para que
    no se amontone en el rango de laptops chicas. Con 7 enlaces (se agregó
    "Voluntariado") el punto de quiebre se movió de 1080px a 1220px, y de
    1220px a 1320px al renombrar "Eventos" a "Próximos eventos" (para no
    sonar repetido junto a "Eventos pasados"), que alarga ese enlace y ya
-   no cabía en una sola línea antes de 1220px. */
-@media (max-width:1320px) {
+   no cabía en una sola línea antes de 1220px. Al agregar el 8vo enlace
+   ("Comunidad", para la página de programas comunitarios) el punto de
+   quiebre subió de 1320px a 1480px, junto con --nav-max (1300px ->
+   1460px) para que la barra tenga espacio real para los 8 enlaces sin
+   amontonarse contra la marca o el botón. */
+@media (max-width:1480px) {
 
   nav.links {
     display: none;
@@ -1787,6 +1791,36 @@ footer {
   max-width: 60ch;
   color: var(--brown-soft);
   font-size: 16px;
+}
+
+/* Cifra de crecimiento destacada (pages/programas-comunitarios.html):
+   número grande en dorado para que resalte como logro, no como dato
+   más de la lista. */
+.growth-stat {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  max-width: 60ch;
+}
+
+.growth-stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--gold-deep);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.growth-stat-label {
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--brown);
+  max-width: 20ch;
 }
 
 /* Encabezado del equipo: mismo patrón de dos columnas que el archivo de
@@ -2835,6 +2869,19 @@ footer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
+}
+
+/* Variante para exactamente 3 pasos (Servicios, desde que "Primera cita"
+   absorbió el estudio socioeconómico): 3 columnas en vez de 2+1, para que
+   no quede un tercer paso huérfano con hueco vacío a su lado. */
+.proc-list--triple {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .proc-list--triple {
+    grid-template-columns: 1fr;
+  }
 }
 
 .proc-step {
