@@ -12,10 +12,9 @@ La base técnica del sitio es **buena y mejoró de forma sostenida** desde la pr
 
 **Lo que sigue abierto de verdad:**
 1. **Google Search Console no está verificado.** Bing sí lo está. No hay forma de ver qué indexa Google, qué errores encuentra ni qué búsquedas traen visitas.
-2. **El JSON-LD de la portada no declara `sameAs`** (perfiles de Instagram/Facebook), `telephone` ni `email` — Google no puede enlazar el sitio con sus perfiles sociales para el panel de conocimiento.
-3. `lastmod` del sitemap y sitemap de imágenes (menores).
+2. Sitemap de imágenes (menor).
 
-**Diagnóstico general: base sólida, con dos pendientes de configuración de cuenta y datos, ninguno de código complejo.**
+**Diagnóstico general: base sólida, con un solo pendiente real: verificar Google Search Console (depende de acceso a cuenta, no de código).**
 
 ---
 
@@ -49,6 +48,8 @@ La base técnica del sitio es **buena y mejoró de forma sostenida** desde la pr
 | M3 | Sin página 404 propia (usaba la genérica de GitHub Pages) | ✅ `404.html` con la identidad del sitio |
 | M4 | `logo.png` (108KB) y `hero.jpg` (201KB) pesados | ✅ Comprimidos a 35KB y 179KB |
 | M5 | `theme-color` faltaba en la portada | ✅ Presente |
+| A4 | JSON-LD de la portada sin `sameAs`/`telephone`/`email` | ✅ Presente, con la URL real de Facebook confirmada por la asociación (`facebook.com/aguiladoradaac`, no el acortador `share/`) |
+| M1 | `lastmod` del sitemap podía quedar desactualizado | ✅ Automatizado: el workflow de despliegue actualiza solo las páginas que cambiaron en cada push a `main` |
 
 ---
 
@@ -65,25 +66,10 @@ No existe ninguna etiqueta `google-site-verification` en el sitio. Sin Search Co
 ```
 Después, enviar `https://aguiladorada.org/sitemap.xml` desde el panel.
 
-### 🟠 El JSON-LD de la portada no incluye redes ni contacto
-
-El bloque `NGO`+`MedicalBusiness` de `index.html` trae nombre, dirección, geolocalización y especialidad, pero le falta `sameAs` (perfiles de Instagram y Facebook), `telephone` y `email`.
-
-```json
-  "sameAs": [
-    "https://www.instagram.com/aguiladoradaac",
-    "https://www.facebook.com/share/1TCRMLJVQr/"
-  ],
-  "telephone": "+52-667-211-5886",
-  "email": "aguiladorada.admi@gmail.com"
-```
-⚠️ Verificar antes el enlace de Facebook: `facebook.com/share/1TCRMLJVQr/` es un acortador opaco. Para `sameAs` conviene la URL real del perfil (`facebook.com/nombredelapagina`). No cambiar sin confirmar — los datos de contacto y redes son fuente de verdad según `PRODUCT.md`.
-
 ### 🟡 Menores
 
 | # | Hallazgo | Detalle |
 |---|---|---|
-| M1 | `lastmod` del sitemap puede quedar desactualizado | Dice `2026-09-11`; hay páginas editadas después (p. ej. `index.html` el 14 de septiembre). Actualizar al publicar cambios de contenido, o generarlo en el workflow. |
 | M6 | Sin sitemap de imágenes | Las fotos del equipo y los flyers de eventos no se declaran. Opcional; ayuda a aparecer en Google Imágenes con búsquedas locales. |
 
 ---
@@ -132,19 +118,19 @@ El bloque `NGO`+`MedicalBusiness` de `index.html` trae nombre, dirección, geolo
 | # | Acción | Impacto | Esfuerzo | Depende de |
 |---|---|---|---|---|
 | 1 | Verificar el sitio en Google Search Console y enviar el sitemap | **Alto** | 15 min | Acceso a la cuenta de Google |
-| 2 | Agregar `sameAs`, `telephone` y `email` al JSON-LD de la portada | Medio | 10 min | Confirmar URL real de Facebook (no el acortador `share/`) |
-| 3 | Actualizar `lastmod` del sitemap al publicar cambios | Bajo | 2 min | — |
 
 ### Este trimestre
 
 | # | Acción | Impacto | Esfuerzo |
 |---|---|---|---|
-| 4 | **Guía "Cuánto cuesta una terapia psicológica en Culiacán"** explicando el estudio socioeconómico. Es el diferenciador de la asociación y nadie más lo cubre. | **Alto** | Medio |
-| 5 | **Reclamar y optimizar la ficha de Google Business.** Para "psicólogo cerca de mí" el paquete local pesa más que el sitio. Los horarios del sitio ya se tomaron de ahí, así que la ficha existe. | **Alto** | Medio |
-| 6 | Página de "Próximos eventos" propia (hoy es un ancla en la portada) con schema `Event`, para optar a los resultados enriquecidos de eventos | Medio | Medio |
 | 7 | Páginas por padecimiento (ansiedad, depresión, duelo) con criterio clínico y revisión de la Lic. Cázarez | Medio | Alto |
 | 8 | Migrar a URLs limpias (`servicios/index.html` → `/servicios/`) con redirecciones. Mejora legibilidad y tasa de clic, pero hay que hacerlo de una vez y con cuidado. | Medio | Alto |
 | 9 | Conseguir enlaces entrantes: directorios de OSC, Servicios de Salud de Sinaloa, universidades con las que se colabore | **Alto** | Alto |
+
+### Decidido no hacer (2026-09-19)
+
+- **Guía "Cuánto cuesta una terapia psicológica en Culiacán" como página aparte**: se evaluó, se llegó a construir y luego se descartó por ser demasiado redundante con `servicios.html` (mismo texto, mantenimiento doble). En su lugar, `servicios.html` ya tiene su FAQ existente marcado con schema `FAQPage`, cubriendo el mismo objetivo de SEO sin URL ni contenido duplicado.
+- **Página de "Próximos eventos" propia con schema `Event`**: se decidió mantener como ancla en el index en vez de crear una página dedicada.
 
 ---
 
