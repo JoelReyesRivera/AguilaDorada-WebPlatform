@@ -243,10 +243,37 @@ nav.links a:hover {
 .btn-gold {
   background: var(--gold);
   color: var(--brown);
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-gold:hover {
   background: var(--gold-deep);
+}
+
+/* Brillo diagonal que cruza el botón dorado al hover: refuerza que es
+   el acento de invitación principal del sitio. */
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, .55), transparent);
+  transform: skewX(-20deg);
+  transition: left .55s ease;
+  pointer-events: none;
+}
+
+.btn-gold:hover::after {
+  left: 125%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-gold::after {
+    display: none;
+  }
 }
 
 .btn-outline {
@@ -362,6 +389,27 @@ nav.links a:hover {
   position: relative;
 }
 
+/* Entrada suave del hero al cargar la página: mismo patrón (fade +
+   rise escalonado) que ph-rise usa en los encabezados de las páginas
+   internas, para que el primer contenido visible del sitio no aparezca
+   de golpe frente al resto de animaciones del sitio. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy {
+    animation: hero-rise .7s cubic-bezier(.2, .7, .2, 1) both;
+  }
+
+  .hero-photo {
+    animation: hero-rise .7s cubic-bezier(.2, .7, .2, 1) .12s both;
+  }
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+}
+
 .photo-block {
   border-radius: 14px;
   overflow: hidden;
@@ -376,8 +424,15 @@ nav.links a:hover {
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
-  transform: scale(1.04);
+  transform: scale(1.04) translateY(var(--hero-parallax, 0px));
   filter: saturate(.9) sepia(.06) contrast(.98) brightness(1.04);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-block img {
+    transform: scale(1.04);
+  }
 }
 
 .photo-quote {
@@ -436,10 +491,41 @@ nav.links a:hover {
 .timeline {
   position: relative;
   padding-left: 20px;
-  border-left: 2px solid var(--line);
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+
+/* Trazo de la bitácora: una línea de fondo fija (--line) y una segunda
+   línea dorada que se "dibuja" encima con stroke-dashoffset conforme
+   avanza el scroll (ver initScrollEffects en el script). pathLength="1"
+   normaliza el largo real del trazo a 1 unidad, así el offset siempre
+   va de 1 (oculto) a 0 (dibujado por completo) sin importar la altura
+   real de la bitácora. */
+.tl-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  overflow: visible;
+}
+
+.tl-track-bg {
+  stroke: var(--line);
+  stroke-width: 2;
+}
+
+.tl-track-fg {
+  stroke: var(--gold-deep);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-track-fg {
+    stroke-dashoffset: 0 !important;
+  }
 }
 
 .tl-item {
