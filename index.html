@@ -31,7 +31,7 @@
   <meta name="msvalidate.01" content="033CC8452195BD42DEB21FF409A09D6E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/images/hero.jpg" type="image/jpeg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/hero.webp" type="image/webp" fetchpriority="high">
   <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap"
     onload="this.onload=null;this.rel='stylesheet'">
@@ -90,8 +90,12 @@
        páginas. Toda la imagen es un enlace directo a WhatsApp con un
        mensaje pre-redactado (mismo criterio de WHATSAPP_NUMBER que el
        resto del sitio). Para cambiar la imagen, reemplaza
-       assets/images/voluntariado-banner.png (o cambia la ruta abajo) y
-       actualiza el "alt" para que siga describiendo el contenido real. -->
+       assets/images/voluntariado-banner.png Y regenera
+       voluntariado-banner.webp a partir de ella (si el .webp queda
+       desactualizado, los navegadores que lo soportan seguirán
+       mostrando la imagen vieja porque <picture> no cae al .png salvo
+       que el .webp falte por completo) y actualiza el "alt" para que
+       siga describiendo el contenido real. -->
   <div class="promo-modal" id="promoModal" hidden>
     <div class="promo-modal-backdrop" data-promo-close></div>
     <div class="promo-modal-dialog" role="dialog" aria-modal="true" aria-label="Convocatoria de voluntariado">
@@ -103,8 +107,11 @@
       <a data-wa href="https://wa.me/526672115886?text=Hola%2C%20quiero%20sumarme%20como%20voluntario%20a%20%C3%81guila%20Dorada.%20Vi%20el%20anuncio%20de%20voluntariado"
         target="_blank" rel="noopener noreferrer" class="promo-modal-link"
         aria-label="Escribir por WhatsApp para sumarme como voluntario/a">
-        <img src="assets/images/voluntariado-banner.png" width="1280" height="1600" decoding="async"
-          alt="Convocatoria abierta de voluntariado: necesitamos más manos para seguir creciendo. Buscamos personas para: 1) Comunidad y crecimiento de grupos, invitando a nuevas personas a nuestros grupos y talleres y acompañándolas en su inscripción. 2) Apoyo al departamento educativo con la logística del día a día en oficina, 2 a 3 horas diarias. 3) Atención y recepción en oficina, por teléfono y WhatsApp, 3 a 4 horas diarias. En las áreas 1 y 3 se presta un celular de Águila Dorada. ¿Quieres crecer con nosotros? Escríbenos y te decimos cómo empezar.">
+        <picture>
+          <source srcset="assets/images/voluntariado-banner.webp" type="image/webp">
+          <img src="assets/images/voluntariado-banner.png" width="1280" height="1600" decoding="async"
+            alt="Convocatoria abierta de voluntariado: necesitamos más manos para seguir creciendo. Buscamos personas para: 1) Comunidad y crecimiento de grupos, invitando a nuevas personas a nuestros grupos y talleres y acompañándolas en su inscripción. 2) Apoyo al departamento educativo con la logística del día a día en oficina, 2 a 3 horas diarias. 3) Atención y recepción en oficina, por teléfono y WhatsApp, 3 a 4 horas diarias. En las áreas 1 y 3 se presta un celular de Águila Dorada. ¿Quieres crecer con nosotros? Escríbenos y te decimos cómo empezar.">
+        </picture>
       </a>
     </div>
   </div>
@@ -164,7 +171,7 @@
   <main id="main-content">
     <section class="hero" aria-label="Inicio">
       <div class="wrap hero-grid">
-        <div>
+        <div class="hero-copy">
           <div class="hero-kicker">Salud mental accesible en Culiacán</div>
           <h1>Acompañamos, fortalecemos y <span class="accent">transformamos</span> vidas.</h1>
           <p class="lede">Brindamos atención psicológica accesible, educación emocional y espacios comunitarios para el
@@ -178,8 +185,11 @@
         </div>
         <div class="hero-photo">
           <div class="photo-block">
-            <img src="assets/images/hero.jpg" width="1200" height="1000" fetchpriority="high" decoding="async"
-              alt="Círculo de personas conversando en un espacio cálido y luminoso">
+            <picture>
+              <source srcset="assets/images/hero.webp" type="image/webp">
+              <img src="assets/images/hero.jpg" width="1200" height="1000" fetchpriority="high" decoding="async"
+                alt="Círculo de personas conversando en un espacio cálido y luminoso">
+            </picture>
           </div>
           <p class="photo-quote">"Acompañamos, fortalecemos y transformamos vidas."</p>
         </div>
@@ -193,6 +203,11 @@
           <p>Esto es apenas el comienzo. Así ha ido creciendo Águila Dorada A.C.</p>
         </div>
         <div class="timeline">
+          <svg class="tl-track" aria-hidden="true" focusable="false">
+            <line class="tl-track-bg" x1="50%" y1="0" x2="50%" y2="100%" />
+            <line class="tl-track-fg" x1="50%" y1="0" x2="50%" y2="100%" pathLength="1" stroke-dasharray="1"
+              stroke-dashoffset="1" />
+          </svg>
           <div class="tl-item" data-reveal>
             <div class="tl-dot ic-comunidad"></div>
             <div class="tl-date">18 dic 2025</div>
@@ -912,13 +927,50 @@
       el.addEventListener('click', closeLightbox);
     });
 
-    // Header compacto al hacer scroll: sombra + menos padding, con
-    // transición suave definida en CSS (se desactiva con reduce-motion).
-    (function initHeaderScroll() {
+    // Efectos ligados al scroll, agrupados en un solo listener con
+    // requestAnimationFrame para no recalcular más de una vez por frame:
+    // 1) header compacto, 2) trazo dorado de la bitácora dibujándose,
+    // 3) parallax sutil de la foto del hero. Los dos últimos se omiten
+    // por completo con prefers-reduced-motion.
+    (function initScrollEffects() {
       const header = document.querySelector('header');
-      if (!header) return;
-      const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
-      onScroll();
+      const tlTrackFg = document.querySelector('.tl-track-fg');
+      const timeline = document.querySelector('.timeline');
+      const heroPhoto = document.querySelector('.photo-block img');
+      const heroSection = document.querySelector('.hero');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      let ticking = false;
+
+      function update() {
+        ticking = false;
+        if (header) header.classList.toggle('is-scrolled', window.scrollY > 8);
+        if (reduce) return;
+
+        if (tlTrackFg && timeline) {
+          const rect = timeline.getBoundingClientRect();
+          const start = window.innerHeight * 0.85;
+          const end = window.innerHeight * 0.15;
+          const total = rect.height + (start - end);
+          const progress = Math.min(1, Math.max(0, (start - rect.top) / total));
+          tlTrackFg.setAttribute('stroke-dashoffset', String(1 - progress));
+        }
+
+        if (heroPhoto && heroSection) {
+          const rect = heroSection.getBoundingClientRect();
+          const offset = Math.max(-14, Math.min(14, rect.top * -0.06));
+          heroPhoto.style.setProperty('--hero-parallax', offset.toFixed(1) + 'px');
+        }
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }
+
+      update();
       window.addEventListener('scroll', onScroll, { passive: true });
     })();
 
