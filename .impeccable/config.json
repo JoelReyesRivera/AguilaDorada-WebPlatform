@@ -170,6 +170,15 @@
         ],
         "createdAt": "2026-09-12T06:05:30.017Z",
         "reason": "project design system: site-wide 'El Santuario Cálido' world (DESIGN.md) uses --cream as the deliberate base surface across the whole site; 404.html inherits the established world"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "pages/programas-comunitarios.html"
+        ],
+        "createdAt": "2026-09-17T20:17:21.202Z",
+        "reason": "matches the site's existing design system used on all 7 other pages (index.html, servicios.html, etc.) — not a fresh AI default, this page copies the established palette intentionally for consistency"
       }
     ]
   }

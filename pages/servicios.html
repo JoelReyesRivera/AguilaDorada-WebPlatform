@@ -18,7 +18,7 @@
   <meta property="og:locale" content="es_MX">
   <meta property="og:title" content="Servicios — Águila Dorada A.C.">
   <meta property="og:description"
-    content="Terapia y diagnóstico psicológico con cuota accesible, más programas comunitarios. Culiacán, Sinaloa.">
+    content="Terapia y diagnóstico psicológico con cuota accesible en Culiacán, Sinaloa.">
   <meta property="og:image" content="https://aguiladorada.org/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -26,7 +26,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Servicios — Águila Dorada A.C.">
   <meta name="twitter:description"
-    content="Terapia y diagnóstico psicológico con cuota accesible, más programas comunitarios. Culiacán, Sinaloa.">
+    content="Terapia y diagnóstico psicológico con cuota accesible en Culiacán, Sinaloa.">
   <meta name="twitter:image" content="https://aguiladorada.org/assets/og-image.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,7 @@
   </noscript>
 
   <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalBusiness","name":"Águila Dorada A.C.","url":"https://aguiladorada.org/pages/servicios.html","description":"Asociación civil de salud mental que ofrece terapia psicológica y diagnóstico con cuota ajustada por estudio socioeconómico, y programas comunitarios en Culiacán.","areaServed":"Culiacán","telephone":"+52-667-211-5886","address":{"@type":"PostalAddress","streetAddress":"Matías Lazcano 2134, int. 11","addressLocality":"Culiacán Rosales","addressRegion":"Sinaloa","postalCode":"80030","addressCountry":"MX"},"priceRange":"$150–$350 MXN","hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios de Águila Dorada A.C.","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Terapia psicológica","description":"Atención psicológica individual, presencial o en línea, semanal o quincenal.","provider":{"@type":"Organization","name":"Águila Dorada A.C."}}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Diagnóstico psicológico","description":"Evaluaciones psicológicas profesionales, breves o integrales, para definir la ruta de atención más adecuada.","provider":{"@type":"Organization","name":"Águila Dorada A.C."}}}]}}
+{"@context":"https://schema.org","@type":"MedicalBusiness","name":"Águila Dorada A.C.","url":"https://aguiladorada.org/pages/servicios.html","description":"Asociación civil de salud mental que ofrece terapia psicológica y diagnóstico con cuota ajustada por estudio socioeconómico en Culiacán.","areaServed":"Culiacán","telephone":"+52-667-211-5886","address":{"@type":"PostalAddress","streetAddress":"Matías Lazcano 2134, int. 11","addressLocality":"Culiacán Rosales","addressRegion":"Sinaloa","postalCode":"80030","addressCountry":"MX"},"priceRange":"$150–$350 MXN","hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios de Águila Dorada A.C.","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Terapia psicológica","description":"Atención psicológica individual, presencial o en línea para foráneos o quien no pueda asistir.","provider":{"@type":"Organization","name":"Águila Dorada A.C."}}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Diagnóstico psicológico","description":"Entrevistas y pruebas especializadas para evaluar tu estado de salud mental, entregando un diagnóstico preciso y un plan de tratamiento a tu medida.","provider":{"@type":"Organization","name":"Águila Dorada A.C."}}}]}}
   </script>
 
   <!-- =================================================================
@@ -53,12 +53,14 @@
           son datos reales — no los cambies sin instrucción.
        2. PROCESO (.proc-list) y PREGUNTAS FRECUENTES (.info-card): son
           BORRADOR editable. Describen el flujo esperado (primer contacto
-          por WhatsApp -> estudio socioeconómico -> primera cita ->
-          seguimiento). Ajústalo al proceso real de la asociación.
-       3. PROGRAMAS COMUNITARIOS (.cm-grid): los cuatro frentes con su
-          color de categoría fijo (Comunidad = dorado, Educativo = navy,
-          Asistencial = verde, Cultural = terracota). Enlazan a las
-          secciones del landing (#eventos, #donar) y a eventos-pasados.
+          por WhatsApp -> primera cita, donde se hace el estudio
+          socioeconómico y se define la cuota -> seguimiento). La
+          modalidad en línea es solo para foráneos o quien no pueda
+          acceder a las oficinas. Ajústalo al proceso real de la
+          asociación.
+       3. Los programas comunitarios (Comunidad, Educativo, Cultural,
+          Asistencial) viven en su propia página:
+          programas-comunitarios.html. No los agregues de vuelta aquí.
        4. El número de WhatsApp sale de WHATSAPP_NUMBER (mismo criterio
           que index.html). Para agendar terapia se usa el mismo mensaje
           pre-redactado que en el resto del sitio.
@@ -101,6 +103,7 @@
       <nav class="links" aria-label="Principal">
         <a href="../index.html#main-content">Inicio</a>
         <a href="servicios.html" aria-current="page">Servicios</a>
+        <a href="programas-comunitarios.html">Comunidad</a>
         <a href="../index.html#eventos">Próximos eventos</a>
         <a href="eventos-pasados.html">Eventos pasados</a>
         <a href="nosotros.html">Nosotros</a>
@@ -121,6 +124,7 @@
     <nav class="mobile-nav" id="mobileNav" aria-label="Menú móvil">
       <a href="../index.html#main-content">Inicio</a>
       <a href="servicios.html" aria-current="page">Servicios</a>
+      <a href="programas-comunitarios.html">Comunidad</a>
       <a href="../index.html#eventos">Próximos eventos</a>
       <a href="eventos-pasados.html">Eventos pasados</a>
       <a href="nosotros.html">Nosotros</a>
@@ -136,17 +140,23 @@
         <div class="ph-main">
           <div class="kicker">Qué ofrecemos</div>
           <h1>Cómo te acompañamos</h1>
-          <p>Dos servicios clínicos: terapia y diagnóstico, con cuota ajustada a tu situación, y cuatro frentes de
-            trabajo comunitario. Aquí te explicamos en qué consiste cada uno y cómo empezar.</p>
-          <p>La cuota de cada sesión se define contigo mediante un estudio socioeconómico: nadie se queda sin atención
-            por no poder cubrir la tarifa completa.</p>
+          <p>Dos servicios clínicos: terapia y diagnóstico, con cuota ajustada a tu situación. Aquí te explicamos en
+            qué consiste cada uno y cómo empezar. ¿Buscas nuestros programas comunitarios? <a
+              href="programas-comunitarios.html">Conócelos aquí</a>.</p>
+          <p>La cuota se define en tu primera consulta mediante un estudio socioeconómico, para que nadie se quede
+            sin atención. Como asociación civil, buscamos precios accesibles para todas las personas y así seguir
+            ayudando.</p>
+          <div class="growth-stat">
+            <span class="growth-stat-num">25+</span>
+            <span class="growth-stat-label">personas atendidas</span>
+          </div>
         </div>
 
         <aside class="ph-aside" aria-label="Cómo trabajamos">
           <span class="ph-aside-label">Cómo trabajamos</span>
           <ul class="ph-aside-list">
             <li>Cuota ajustada con estudio socioeconómico</li>
-            <li>Sesiones presenciales o en línea</li>
+            <li>Sesiones presenciales; en línea para foráneos o quien no pueda asistir</li>
             <li>Espacio confidencial y sin juicio</li>
             <li>Atención encabezada por psicóloga con cédula profesional</li>
           </ul>
@@ -180,7 +190,8 @@
               <h3>Terapia</h3>
             </div>
             <p>Atención psicológica individual, en un espacio confidencial y sin juicio. Sesiones
-              <strong>presenciales o en línea</strong>, semanales o quincenales según tu proceso.</p>
+              <strong>presenciales</strong>; la modalidad en línea es para quienes no pueden acceder a nuestras
+              oficinas o son foráneos.</p>
             <div class="pill-row">
               <span class="pill">Individual</span>
               <span class="pill">En línea</span>
@@ -196,8 +207,8 @@
                 </svg></div>
               <h3>Diagnóstico</h3>
             </div>
-            <p>Evaluaciones psicológicas profesionales para entender mejor lo que estás viviendo y definir la ruta de
-              atención más adecuada.</p>
+            <p>Nuestro equipo de psicología clínica realiza entrevistas y pruebas especializadas para evaluar tu
+              estado de salud mental, entregándote un diagnóstico preciso y un plan de tratamiento a tu medida.</p>
             <div class="pill-row">
               <span class="pill">Evaluación breve</span>
               <span class="pill">Evaluación integral</span>
@@ -213,11 +224,10 @@
     <section aria-label="Cómo es el proceso">
       <div class="wrap">
         <div class="head-block">
-          <div class="kicker">Paso a paso</div>
           <h2>Cómo empezar</h2>
           <p>El mismo camino para terapia y para diagnóstico. No necesitas tener todo claro antes de escribirnos.</p>
         </div>
-        <ol class="proc-list">
+        <ol class="proc-list proc-list--triple">
           <li class="proc-step">
             <div>
               <h3>Escríbenos</h3>
@@ -226,23 +236,16 @@
           </li>
           <li class="proc-step">
             <div>
-              <h3>Estudio socioeconómico</h3>
-              <p>Revisamos juntos tu situación para definir la cuota que te corresponde, entre $150 y $350 por sesión.</p>
-            </div>
-          </li>
-          <li class="proc-step">
-            <div>
               <h3>Primera cita</h3>
-              <p>Agendamos tu sesión inicial, presencial o en línea, con la profesional que acompañará tu proceso: la
-                psicóloga con cédula profesional, o una pasante en práctica supervisada por ella cuando se trate de
-                orientación psicológica.</p>
+              <p>Agendamos tu sesión inicial, presencial o en línea (foráneos). Definimos tu cuota mediante un
+                estudio socioeconómico, entre $150 y $350 por sesión.</p>
             </div>
           </li>
           <li class="proc-step">
             <div>
               <h3>Seguimiento</h3>
-              <p>Continúas con sesiones semanales o quincenales según tu proceso, con la posibilidad de ajustar el ritmo
-                cuando haga falta.</p>
+              <p>El ritmo habitual es una sesión cada 15 días. En caso de ser necesario, la frecuencia puede
+                modificarse.</p>
             </div>
           </li>
         </ol>
@@ -250,67 +253,7 @@
       </div>
     </section>
 
-    <section class="section-alt">
-      <div class="wrap">
-        <div class="head-block">
-          <div class="kicker">Programa aparte</div>
-          <h2>Programas comunitarios</h2>
-          <p>Fuera de la atención clínica, sostenemos cuatro frentes de trabajo abiertos a la comunidad. La mayoría de
-            las actividades son gratuitas o de aportación mínima.</p>
-        </div>
-        <div class="cm-grid">
-
-          <article class="cm-card programa-card">
-            <span class="cm-icon ic-comunidad" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path
-                  d="M17 20v-1a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v1M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm6 0a3.5 3.5 0 1 0 0-7M20 20v-1a3.5 3.5 0 0 0-2.5-3.4" />
-              </svg>
-            </span>
-            <h3>Comunidad</h3>
-            <p>Reuniones quincenales abiertas para compartir, aprender y sentirse acompañado en un espacio de escucha.</p>
-            <a class="cm-link" href="../index.html#eventos">Ver próximas reuniones</a>
-          </article>
-
-          <article class="cm-card programa-card">
-            <span class="cm-icon ic-educativo" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                <path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" />
-              </svg>
-            </span>
-            <h3>Educativo</h3>
-            <p>Pláticas, talleres y conferencias sobre bienestar emocional, crianza y educación emocional.</p>
-            <a class="cm-link" href="eventos-pasados.html">Ver lo que hemos hecho</a>
-          </article>
-
-          <article class="cm-card programa-card">
-            <span class="cm-icon ic-cultural" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                <path d="M4 5.5C6 4.6 8 4.3 12 5.6c4-1.3 6-1 8-.1V17c-2-.9-4-1.2-8 .1-4-1.3-6-1-8-.1V5.5Z" />
-              </svg>
-            </span>
-            <h3>Cultural</h3>
-            <p>Encuentros donde el arte: música, lectura, artes expresivas, se vuelve un espacio de expresión y refugio.</p>
-            <a class="cm-link" href="eventos-pasados.html">Ver encuentros pasados</a>
-          </article>
-
-          <article class="cm-card programa-card">
-            <span class="cm-icon ic-asistencial" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.6-9.5 9-9.5 9Z" />
-              </svg>
-            </span>
-            <h3>Asistencial</h3>
-            <p>Jornadas de apoyo con víveres para familias en situación de vulnerabilidad, de la recolección a la
-              entrega.</p>
-            <a class="cm-link" href="../index.html#donar">Cómo apoyar con víveres</a>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section aria-label="Preguntas frecuentes sobre los servicios">
+    <section class="section-alt" aria-label="Preguntas frecuentes sobre los servicios">
       <div class="wrap">
         <div class="head-block">
           <div class="kicker">Preguntas frecuentes</div>
@@ -347,8 +290,8 @@
               </svg></span>
             <div>
               <h3>¿Cuánto cuesta y cómo se define la cuota?</h3>
-              <p>Entre $150 y $350 MXN por sesión. Aplicamos un estudio socioeconómico para ajustar el monto a tu
-                situación; lo revisamos contigo al agendar, sin compromiso.</p>
+              <p>Entre $150 y $350 MXN por sesión. Aplicamos un estudio socioeconómico para definir un monto justo a
+                pagar por el servicio; lo hacemos en tu primera consulta presencial, no al agendar.</p>
             </div>
           </div>
           <div class="info-row">
@@ -359,8 +302,8 @@
               </svg></span>
             <div>
               <h3>¿Atienden en línea?</h3>
-              <p>Sí. Las sesiones de terapia pueden ser presenciales en nuestras instalaciones de Culiacán o en línea,
-                según lo que te acomode.</p>
+              <p>Sí, pero reservado para quienes no puedan acceder a nuestras instalaciones en Culiacán o sean
+                foráneos. Si puedes asistir en persona, las sesiones son presenciales.</p>
             </div>
           </div>
           <div class="info-row">
@@ -371,8 +314,8 @@
               </svg></span>
             <div>
               <h3>¿Cada cuándo son las sesiones?</h3>
-              <p>Lo habitual es una sesión semanal o quincenal. El ritmo se define contigo según tu proceso y se puede
-                ajustar más adelante.</p>
+              <p>El ritmo habitual es una sesión cada 15 días. En caso de ser necesario, la frecuencia puede
+                modificarse.</p>
             </div>
           </div>
           <div class="info-row">
@@ -382,7 +325,7 @@
               </svg></span>
             <div>
               <h3>¿Los talleres y pláticas tienen costo?</h3>
-              <p>La mayoría son gratuitos o de aportación mínima; algunas conferencias tienen una cuota de recuperación.
+              <p>La mayoría son de costo mínimo accesible; algunas conferencias tienen una cuota de recuperación.
                 El costo se indica en cada convocatoria.</p>
             </div>
           </div>
@@ -454,6 +397,7 @@
           <ul>
             <li><a href="../index.html#main-content">Inicio</a></li>
             <li><a href="servicios.html" aria-current="page">Servicios</a></li>
+            <li><a href="programas-comunitarios.html">Comunidad</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="../index.html#eventos">Próximos eventos</a></li>
             <li><a href="eventos-pasados.html">Eventos pasados</a></li>
@@ -469,10 +413,10 @@
           </ul>
           <h3 style="margin-top:20px;">Actividades comunitarias</h3>
           <ul>
-            <li><a href="../index.html#eventos">Reuniones de comunidad quincenales</a></li>
-            <li><a href="../index.html#eventos">Educativos</a></li>
-            <li><a href="../index.html#eventos">Culturales</a></li>
-            <li><a href="../index.html#eventos">Asistenciales</a></li>
+            <li><a href="programas-comunitarios.html#comunidad">Reuniones de comunidad quincenales</a></li>
+            <li><a href="programas-comunitarios.html#educativo">Educativos</a></li>
+            <li><a href="programas-comunitarios.html#cultural">Culturales</a></li>
+            <li><a href="programas-comunitarios.html#asistencial">Asistenciales</a></li>
           </ul>
         </div>
         <div class="foot-col" id="contacto">
@@ -609,13 +553,13 @@
           {
             id: 'terapia-incluye',
             label: '¿Qué incluye la terapia?',
-            message: 'Atención psicológica <strong>individual</strong>, presencial o en línea, semanal o quincenal, en un espacio confidencial y sin juicio.',
+            message: 'Atención psicológica <strong>individual</strong>, presencial o en línea, en un espacio confidencial y sin juicio.',
             quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-diagnostico',
             label: '¿Cómo es el proceso de diagnóstico?',
-            message: 'Evaluaciones psicológicas, <strong>breves</strong> o <strong>integrales</strong>, para entender mejor lo que estás viviendo y definir la ruta de atención más adecuada. Es un servicio aparte de la terapia.',
+            message: 'Nuestro equipo de psicología clínica realiza <strong>entrevistas</strong> y <strong>pruebas especializadas</strong> para evaluar tu estado de salud mental, entregándote un diagnóstico preciso y un plan de tratamiento a tu medida. Es un servicio aparte de la terapia.',
             quickAction: 'terapia-agendar',
           },
           {
@@ -627,13 +571,13 @@
           {
             id: 'terapia-costo',
             label: '¿Cuánto cuesta?',
-            message: 'Entre <strong>$150 y $350 MXN</strong> por sesión. Aplicamos un estudio socioeconómico para ajustar el monto a tu situación; lo revisamos contigo al agendar, sin compromiso.',
+            message: 'Entre <strong>$150 y $350 MXN</strong> por sesión. Aplicamos un estudio socioeconómico para definir un monto justo a pagar por el servicio; lo hacemos en tu primera consulta, no al agendar.',
             quickAction: 'terapia-agendar',
           },
           {
             id: 'terapia-proceso',
             label: '¿Cómo empiezo?',
-            message: '<ol><li><strong>Escríbenos:</strong> nos cuentas brevemente qué buscas.</li><li><strong>Estudio socioeconómico:</strong> definimos juntos tu cuota.</li><li><strong>Primera cita:</strong> presencial o en línea.</li><li><strong>Seguimiento:</strong> sesiones semanales o quincenales, ajustables.</li></ol>',
+            message: '<ol><li><strong>Escríbenos:</strong> nos cuentas brevemente qué buscas.</li><li><strong>Primera cita:</strong> presencial, o en línea si no puedes acceder a nuestras oficinas o eres foráneo/a; ahí hacemos el estudio socioeconómico y definimos tu cuota.</li><li><strong>Seguimiento:</strong> una sesión cada 15 días; en caso de ser necesario, la frecuencia puede modificarse.</li></ol>',
             quickAction: 'terapia-agendar',
           },
           {
@@ -666,7 +610,7 @@
           {
             id: 'eventos-costo',
             label: '¿Tienen costo?',
-            message: 'La mayoría son <strong>gratuitos o de aportación mínima</strong>. Algunas conferencias tienen una cuota de recuperación, indicada en cada convocatoria.',
+            message: 'La mayoría son <strong>de costo mínimo accesible</strong>. Algunas conferencias tienen una cuota de recuperación, indicada en cada convocatoria.',
           },
           {
             id: 'eventos-ver-proximos',
