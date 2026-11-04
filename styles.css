@@ -850,6 +850,12 @@ section:not(.hero):not(.bitacora) {
   gap: 20px;
 }
 
+/* Con un solo evento, la tarjeta conserva el ancho de una columna de tres
+   en lugar de estirarse a todo el contenedor (y agrandar la foto 4:3). */
+.events-grid:has(> .event-card:only-child) {
+  grid-template-columns: minmax(0, 380px);
+}
+
 .event-card {
   background: var(--paper);
   border: 1px solid var(--line);
