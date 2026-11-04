@@ -1391,6 +1391,37 @@
     chatbotFab.addEventListener('click', () => (chatbotOpen ? closeChatbot() : openChatbot()));
     chatbotCloseBtn.addEventListener('click', closeChatbot);
   </script>
+  <script>
+    // Próximos eventos: quita sola cada tarjeta cuyo evento ya pasó y, si no
+    // queda ninguna, oculta la sección completa y sus enlaces en esta página.
+    // La fecha sale del JSON-LD que va dentro de cada .event-card (endDate, o
+    // startDate + 6 h si no hay endDate). Así la portada nunca muestra eventos
+    // vencidos aunque todavía no se haya publicado la actualización semanal.
+    // Sin JavaScript la sección se muestra tal cual está en el HTML.
+    (() => {
+      const section = document.getElementById('eventos');
+      const grid = section && section.querySelector('.events-grid');
+      if (!grid) return;
+      const SEIS_HORAS = 6 * 60 * 60 * 1000;
+      const ahora = Date.now();
+      grid.querySelectorAll('.event-card').forEach((card) => {
+        const ld = card.querySelector('script[type="application/ld+json"]');
+        if (!ld) return;
+        try {
+          const evento = JSON.parse(ld.textContent);
+          const fin = evento.endDate
+            ? Date.parse(evento.endDate)
+            : Date.parse(evento.startDate) + SEIS_HORAS;
+          if (fin < ahora) card.remove();
+        } catch (e) { /* JSON inválido: se deja la tarjeta como está */ }
+      });
+      if (grid.querySelector('.event-card')) return;
+      section.style.display = 'none';
+      document.querySelectorAll('a[href="#eventos"]').forEach((a) => {
+        (a.closest('li') || a).style.display = 'none';
+      });
+    })();
+  </script>
 </body>
 
 </html>
