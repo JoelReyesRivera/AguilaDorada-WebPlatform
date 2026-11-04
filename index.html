@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Águila Dorada A.C. — Salud mental para todos</title>
+  <title>Águila Dorada A.C. — Salud mental en Culiacán</title>
   <link rel="canonical" href="https://aguiladorada.org/">
   <link rel="icon" type="image/png" href="assets/images/logo.png">
   <script>document.documentElement.classList.add('js');</script>
@@ -18,11 +18,11 @@
   <meta property="og:url" content="https://aguiladorada.org/">
   <meta property="og:site_name" content="Águila Dorada A.C.">
   <meta property="og:locale" content="es_MX">
-  <meta property="og:title" content="Águila Dorada A.C.">
+  <meta property="og:title" content="Águila Dorada A.C. — Salud mental en Culiacán">
   <meta property="og:description"
     content="Comunidad Águila Dorada A.C. ofrece terapia psicológica accesible y apoyo emocional en Culiacán.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Águila Dorada A.C.">
+  <meta name="twitter:title" content="Águila Dorada A.C. — Salud mental en Culiacán">
   <meta name="twitter:description"
     content="Comunidad Águila Dorada A.C. ofrece terapia psicológica accesible y apoyo emocional en Culiacán.">
   <meta name="twitter:image" content="https://aguiladorada.org/assets/og-image.jpg">
@@ -348,8 +348,53 @@
             </p>
           </div>
         </div>
+        <!-- Cada .event-card lleva dentro su propio bloque JSON-LD (tipo Event)
+             para que Google pueda mostrarlo en sus resultados de eventos.
+             Al cambiar o agregar una tarjeta, actualiza también su bloque: name,
+             startDate (con -07:00, hora de Culiacán), location, image, offers y
+             performer. Al quitar una tarjeta, su bloque se va con ella. -->
         <div class="events-grid">
           <div class="event-card" data-reveal>
+            <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Taller: Tejiendo nuestros caminos",
+  "description": "Reunión de comunidad para encontrarnos, escuchar otras historias y descubrir lo que nos une. Taller de Águila Dorada A.C. en Culiacán.",
+  "startDate": "2026-11-09T18:00:00-07:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "La Casa del Maquío",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dr. Luis G. de la Torre 109, Chapultepec",
+      "postalCode": "80040",
+      "addressLocality": "Culiacán Rosales",
+      "addressRegion": "Sinaloa",
+      "addressCountry": "MX"
+    }
+  },
+  "image": ["https://aguiladorada.org/assets/images/evento09-11-2026-flyer.jpg"],
+  "offers": {
+    "@type": "Offer",
+    "price": "30",
+    "priceCurrency": "MXN",
+    "availability": "https://schema.org/InStock",
+    "url": "https://aguiladorada.org/#eventos"
+  },
+  "performer": [
+    { "@type": "Person", "name": "M.D.H. Melissa Morga" },
+    { "@type": "Person", "name": "Lic. Gloria Moreno" }
+  ],
+  "organizer": {
+    "@type": "Organization",
+    "name": "Águila Dorada A.C.",
+    "url": "https://aguiladorada.org"
+  }
+}
+</script>
             <div class="event-photo"><span class="event-tag tag-comunidad">Comunidad</span>
               <button type="button" class="event-photo-btn" data-lightbox-src="assets/images/evento09-11-2026-flyer.jpg"
                 data-lightbox-alt="Flyer completo del taller Tejiendo nuestros caminos"
